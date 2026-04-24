@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moose Calling 101 — The ancestral art of calling moose</title>
+  <meta name="description" content="Online lessons in the art of moose calling and tracking, taught by an Indigenous instructor. Video course, private coaching, and handmade birch bark horns shipped worldwide." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=IM+Fell+DW+Pica+SC&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #0a0c0a;
+      --bg-2:      #11140f;
+      --panel:     #161a14;
+      --panel-2:   #1d221a;
+      --line:      #2a2f26;
+      --line-warm: #3a2e1e;
+      --bone:      #ece3cb;
+      --bone-dim:  #b6ac92;
+      --bone-mute: #7a725f;
+      --moss:      #8ea864;
+      --moss-deep: #57683e;
+      --amber:     #d89344;
+      --ember:     #e8a75a;
+      --rust:      #a04a24;
+      --blood:     #5a1e10;
+      --birch:     #efe8d2;
+
+      --ff-display: "Fraunces", "Times New Roman", serif;
+      --ff-caps:    "IM Fell DW Pica SC", "EB Garamond", serif;
+      --ff-body:    "EB Garamond", Georgia, serif;
+      --ff-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+      --max: 1360px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--bone);
+      font-family: var(--ff-body);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1000;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.88  0 0 0 0 0.78  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      opacity: 0.38;
+      mix-blend-mode: overlay;
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 999;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
+    }
+
+    ::selection { background: var(--amber); color: var(--bg); }
+
+    .mono     { font-family: var(--ff-mono); }
+    .caps-sm  { font-family: var(--ff-caps); letter-spacing: 0.08em; font-size: 0.82rem; }
+    .display  { font-family: var(--ff-display); font-optical-sizing: auto;
+                font-variation-settings: "opsz" 144, "SOFT" 40; }
+
+    h1, h2, h3 { font-family: var(--ff-display); font-weight: 900; line-height: 0.92;
+                 font-variation-settings: "opsz" 144, "SOFT" 40; margin: 0; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    section { position: relative; }
+
+    .topo {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600' viewBox='0 0 600 600'><g fill='none' stroke='%23ece3cb' stroke-width='0.5' opacity='0.22'><path d='M0,120 Q150,80 300,160 T600,140'/><path d='M0,200 Q140,160 280,220 T600,210'/><path d='M0,280 Q160,240 320,300 T600,290'/><path d='M0,360 Q140,320 300,380 T600,360'/><path d='M0,440 Q180,400 340,460 T600,440'/><path d='M0,520 Q160,490 320,540 T600,520'/><circle cx='180' cy='240' r='40'/><circle cx='180' cy='240' r='60'/><circle cx='180' cy='240' r='80'/><circle cx='440' cy='380' r='30'/><circle cx='440' cy='380' r='50'/><circle cx='440' cy='380' r='70'/></g></svg>");
+      background-size: 600px 600px;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    /* =====================================================
+       NAV
+    ===================================================== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(10,12,10,0.9), rgba(10,12,10,0));
+      transition: padding 0.3s ease;
+    }
+    .nav.scrolled { padding: 12px 32px; background: rgba(10,12,10,0.92); backdrop-filter: blur(8px); }
+    .brand { display: flex; align-items: center; gap: 14px; color: var(--bone); text-decoration: none; }
+    .brand-mark {
+      width: 42px; height: 42px; border: 1px solid var(--bone-dim);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: var(--ff-display); font-weight: 900; font-size: 20px;
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+    }
+    .brand-txt { font-family: var(--ff-caps); font-size: 0.9rem; letter-spacing: 0.14em; line-height: 1.1; }
+    .brand-txt small { display: block; font-size: 0.65rem; color: var(--bone-mute); letter-spacing: 0.2em; }
+
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--bone-dim); text-decoration: none;
+      font-family: var(--ff-mono); font-size: 0.72rem; letter-spacing: 0.18em;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::before {
+      content: attr(data-num);
+      color: var(--bone-mute);
+      margin-right: 6px;
+      font-size: 0.62rem;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a.cta {
+      padding: 10px 18px; border: 1px solid var(--amber);
+      color: var(--amber);
+    }
+    .nav-links a.cta::before { display: none; }
+    .nav-links a.cta:hover { background: var(--amber); color: var(--bg); }
+
+    /* Language toggle */
+    .lang-toggle {
+      background: none; border: 1px solid var(--line);
+      padding: 8px 12px;
+      display: inline-flex; gap: 8px; align-items: center;
+      font-family: var(--ff-mono); font-size: 0.68rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer;
+      color: var(--bone-mute);
+      transition: border-color 0.3s;
+    }
+    .lang-toggle:hover { border-color: var(--bone-dim); }
+    .lang-toggle .opt { transition: color 0.25s; }
+    .lang-toggle .opt.active { color: var(--amber); }
+    .lang-toggle .sep { color: var(--bone-mute); }
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 0 80px;
+      display: flex; align-items: center;
+      background:
+        radial-gradient(ellipse 80% 50% at 70% 100%, rgba(216,147,68,0.12), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 20%, rgba(142,168,100,0.08), transparent 60%),
+        linear-gradient(180deg, #0a0c0a 0%, #0f120e 100%);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
+      align-items: center; position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 48px; color: var(--moss);
+    }
+    .hero-eyebrow .dot {
+      width: 8px; height: 8px; background: var(--amber); border-radius: 50%;
+      box-shadow: 0 0 12px var(--amber);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 8px var(--amber); transform: scale(1); }
+      50% { box-shadow: 0 0 20px var(--amber); transform: scale(1.2); }
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 11vw, 11rem);
+      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 900;
+      line-height: 0.84;
+      letter-spacing: -0.035em;
+      color: var(--bone);
+    }
+    .hero-title .it {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 700;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .hero-title .num {
+      display: inline-block;
+      font-size: 0.48em;
+      vertical-align: super;
+      color: var(--moss);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+      font-style: italic;
+      margin-left: 0.1em;
+    }
+
+    .hero-subtitle {
+      margin-top: 36px;
+      max-width: 520px;
+      font-size: 1.15rem;
+      color: var(--bone-dim);
+      line-height: 1.55;
+    }
+    .hero-subtitle em { color: var(--bone); font-style: italic; }
+
+    .hero-meta {
+      margin-top: 48px;
+      display: flex; gap: 32px; flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .hero-meta > div { min-width: 0; }
+    .hero-meta .label {
+      font-family: var(--ff-mono); font-size: 0.68rem;
+      color: var(--bone-mute); letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .hero-meta .val {
+      font-family: var(--ff-display); font-size: 1.15rem;
+      color: var(--bone); margin-top: 4px;
+      font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 500;
+      font-style: italic;
+    }
+
+    .hero-cta-row {
+      margin-top: 40px;
+      display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 16px 28px;
+      font-family: var(--ff-mono); font-size: 0.78rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--amber); color: var(--bg); border-color: var(--amber);
+    }
+    .btn-primary:hover {
+      background: var(--ember); transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(216,147,68,0.3);
+    }
+    .btn-ghost {
+      color: var(--bone); border-color: var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--bone); color: var(--bone); }
+
+    .btn-arrow {
+      display: inline-block; width: 16px;
+      transition: transform 0.3s;
+    }
+    .btn:hover .btn-arrow { transform: translateX(4px); }
+
+    .hero-visual {
+      position: relative;
+      height: 640px;
+      display: grid; place-items: center;
+    }
+    .hero-visual svg { width: 100%; height: 100%; max-width: 560px; }
+    .hero-visual .moose-silhouette {
+      filter: drop-shadow(0 0 80px rgba(216,147,68,0.18));
+      animation: float 8s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+    .hero-coords {
+      position: absolute; top: 24px; right: 0;
+      font-family: var(--ff-mono); font-size: 0.68rem;
+      color: var(--bone-mute); letter-spacing: 0.12em;
+      text-align: right; line-height: 1.6;
+    }
+    .hero-coords .v { color: var(--moss); }
+
+    .fog {
+      position: absolute; inset: auto 0 0 0; height: 220px;
+      background:
+        linear-gradient(to top, rgba(10,12,10,1), transparent),
+        radial-gradient(ellipse at 30% 80%, rgba(142,168,100,0.15), transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(216,147,68,0.08), transparent 50%);
+      pointer-events: none;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      0% { transform: translateX(-30px); }
+      100% { transform: translateX(30px); }
+    }
+
+    .scroll-ind {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      font-family: var(--ff-mono); font-size: 0.62rem; color: var(--bone-mute);
+      letter-spacing: 0.3em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .scroll-ind::after {
+      content: ""; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--bone-mute), transparent);
+      animation: scroll-pulse 2s infinite;
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* =====================================================
+       MARQUEE
+    ===================================================== */
+    .marquee {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-2);
+      padding: 22px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 60s linear infinite;
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 500;
+      font-style: italic;
+      color: var(--bone-dim);
+    }
+    .marquee-track span { margin: 0 40px; }
+    .marquee-track .sep { color: var(--amber); font-style: normal; font-weight: 900; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* =====================================================
+       SECTION HEADERS
+    ===================================================== */
+    .sec-head {
+      display: grid; grid-template-columns: 200px 1fr; gap: 48px;
+      padding: 120px 0 60px;
+      align-items: baseline;
+    }
+    .sec-num {
+      font-family: var(--ff-mono); font-size: 0.72rem;
+      letter-spacing: 0.2em; color: var(--bone-mute);
+      text-transform: uppercase;
+      position: relative;
+    }
+    .sec-num::before {
+      content: ""; display: block; width: 60px; height: 1px;
+      background: var(--amber); margin-bottom: 12px;
+    }
+    .sec-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-variation-settings: "opsz" 144, "SOFT" 40, "wght" 900;
+      letter-spacing: -0.02em;
+    }
+    .sec-title .it {
+      font-style: italic; color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 600;
+      font-weight: 600;
+    }
+    .sec-lede {
+      font-family: var(--ff-display);
+      font-size: 1.3rem; font-style: italic;
+      font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 400;
+      color: var(--bone-dim);
+      max-width: 620px;
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       MANIFESTO
+    ===================================================== */
+    .manifeste {
+      padding: 100px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .manifeste .wrap { position: relative; z-index: 2; }
+    .manifeste-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .manifeste-quote {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-variation-settings: "opsz" 144, "SOFT" 70, "wght" 400;
+      font-style: italic;
+      line-height: 1.1;
+      color: var(--bone);
+      letter-spacing: -0.01em;
+    }
+    .manifeste-quote .hi {
+      color: var(--amber);
+      font-style: normal;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "wght" 800;
+    }
+    .manifeste-quote::before {
+      content: "\201C"; color: var(--moss); font-size: 1.4em; line-height: 0;
+      vertical-align: -0.1em;
+    }
+    .manifeste-quote::after { content: "\201D"; color: var(--moss); }
+    .manifeste-body {
+      color: var(--bone-dim); font-size: 1.1rem; line-height: 1.7;
+    }
+    .manifeste-body p + p { margin-top: 1.2em; }
+    .manifeste-body .sign {
+      margin-top: 40px;
+      font-family: var(--ff-caps);
+      letter-spacing: 0.15em;
+      color: var(--moss);
+      font-size: 0.9rem;
+    }
+
+    /* =====================================================
+       CALLS — audio cards
+    ===================================================== */
+    #calls { padding-bottom: 100px; }
+    .calls-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 40px;
+    }
+    .call-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 32px;
+      position: relative;
+      transition: all 0.4s;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .call-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(216,147,68,0.1), transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .call-card:hover { border-color: var(--amber); transform: translateY(-4px); }
+    .call-card:hover::before { opacity: 1; }
+    .call-num {
+      font-family: var(--ff-mono); font-size: 0.72rem;
+      color: var(--bone-mute); letter-spacing: 0.2em;
+    }
+    .call-name {
+      font-family: var(--ff-display);
+      font-size: 1.9rem;
+      font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 700;
+      margin: 10px 0 6px;
+      color: var(--bone);
+      line-height: 1.05;
+    }
+    .call-name .it {
+      font-style: italic; color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+    }
+    .call-latin {
+      font-family: var(--ff-caps);
+      font-size: 0.78rem;
+      color: var(--bone-mute);
+      letter-spacing: 0.1em;
+    }
+    .waveform {
+      margin: 28px 0; height: 80px;
+      display: flex; align-items: center; gap: 2px;
+    }
+    .waveform .bar {
+      flex: 1; background: var(--moss-deep);
+      transition: all 0.2s;
+      min-height: 4px;
+    }
+    .call-card.playing .waveform .bar { background: var(--amber); animation: wave 0.5s ease-in-out infinite alternate; }
+    @keyframes wave {
+      from { transform: scaleY(0.8); }
+      to { transform: scaleY(1.2); }
+    }
+    .call-desc {
+      color: var(--bone-dim); font-size: 0.98rem; line-height: 1.5;
+    }
+    .call-meta {
+      margin-top: 20px;
+      display: flex; justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      font-family: var(--ff-mono); font-size: 0.7rem;
+      color: var(--bone-mute);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .play-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--amber);
+      font-family: var(--ff-mono); font-size: 0.72rem;
+      letter-spacing: 0.15em;
+    }
+    .play-btn .ico {
+      width: 32px; height: 32px; border: 1px solid var(--amber);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      transition: all 0.3s;
+    }
+    .call-card:hover .play-btn .ico {
+      background: var(--amber); color: var(--bg);
+    }
+
+    /* =====================================================
+       LESSONS
+    ===================================================== */
+    #lessons { background: var(--bg-2); padding-bottom: 120px; border-top: 1px solid var(--line); }
+    .lessons-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px;
+      margin-top: 20px;
+    }
+    .lesson {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 32px;
+      position: relative;
+      transition: all 0.4s;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .lesson::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, var(--amber), transparent);
+      transform: scaleX(0);
+      transition: transform 0.5s;
+    }
+    .lesson:hover::before { transform: scaleX(1); }
+    .lesson:hover { background: var(--panel-2); border-color: var(--line-warm); }
+    .lesson.featured { grid-column: span 6; min-height: 420px; }
+    .lesson.half     { grid-column: span 6; min-height: 300px; }
+    .lesson.third    { grid-column: span 4; min-height: 280px; }
+
+    .lesson-head { display: flex; justify-content: space-between; align-items: flex-start; }
+    .lesson-num {
+      font-family: var(--ff-display); font-size: 3.6rem;
+      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 900;
+      color: var(--moss-deep);
+      line-height: 0.8;
+      transition: color 0.3s;
+    }
+    .lesson:hover .lesson-num { color: var(--amber); }
+    .lesson-badge {
+      font-family: var(--ff-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; color: var(--bone-mute);
+      padding: 4px 10px; border: 1px solid var(--line);
+      text-transform: uppercase;
+    }
+    .lesson-badge.live { color: var(--amber); border-color: var(--amber); }
+    .lesson-title {
+      font-family: var(--ff-display);
+      font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 700;
+      font-size: 2rem;
+      margin-top: auto;
+      line-height: 1;
+    }
+    .lesson.featured .lesson-title { font-size: 2.6rem; }
+    .lesson-title .it {
+      font-style: italic; color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+    }
+    .lesson-excerpt {
+      color: var(--bone-dim);
+      margin-top: 16px;
+      font-size: 1rem;
+    }
+    .lesson-meta {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between;
+      font-family: var(--ff-mono); font-size: 0.7rem;
+      color: var(--bone-mute);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .lesson-meta .price { color: var(--amber); }
+
+    /* =====================================================
+       SERVICES
+    ===================================================== */
+    #services { padding-bottom: 120px; }
+    .services-list {
+      border-top: 1px solid var(--line-warm);
+    }
+    .service {
+      display: grid; grid-template-columns: 120px 1fr 200px 140px;
+      gap: 40px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      transition: all 0.4s;
+    }
+    .service::before {
+      content: ""; position: absolute; inset: 0 0 -1px 0;
+      background: linear-gradient(to right, rgba(216,147,68,0.08), transparent);
+      opacity: 0; transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .service:hover::before { opacity: 1; }
+    .service:hover .service-title .it { text-shadow: 0 0 20px rgba(216,147,68,0.4); }
+    .service-num {
+      font-family: var(--ff-mono); color: var(--bone-mute);
+      font-size: 0.75rem; letter-spacing: 0.2em;
+    }
+    .service-title {
+      font-family: var(--ff-display);
+      font-variation-settings: "opsz" 144, "SOFT" 40, "wght" 700;
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .service-title .it {
+      font-style: italic; color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+      transition: text-shadow 0.3s;
+    }
+    .service-desc {
+      color: var(--bone-dim); font-size: 0.98rem;
+      margin-top: 12px;
+      max-width: 640px;
+    }
+    .service-price {
+      align-self: center;
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 500;
+      font-style: italic;
+      color: var(--bone);
+    }
+    .service-price small {
+      display: block; font-family: var(--ff-mono);
+      font-size: 0.62rem; color: var(--bone-mute);
+      letter-spacing: 0.15em; margin-top: 2px;
+      text-transform: uppercase; font-style: normal;
+    }
+    .service-cta {
+      align-self: center; justify-self: end;
+    }
+    .service-cta a {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--bone);
+      font-family: var(--ff-mono); font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--line);
+      transition: all 0.3s;
+    }
+    .service-cta a:hover { color: var(--amber); border-color: var(--amber); gap: 14px; }
+
+    /* =====================================================
+       SHOP
+    ===================================================== */
+    #shop { background: var(--bg-2); border-top: 1px solid var(--line); padding-bottom: 120px; }
+    .merch-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      margin-top: 40px;
+    }
+    .product {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s;
+      cursor: pointer;
+    }
+    .product:hover { transform: translateY(-6px); }
+    .product-visual {
+      aspect-ratio: 4/5;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      display: grid; place-items: center;
+    }
+    .product-visual::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(216,147,68,0.08));
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .product:hover .product-visual::after { opacity: 1; }
+    .product-tag {
+      position: absolute; top: 16px; left: 16px;
+      font-family: var(--ff-mono); font-size: 0.6rem;
+      letter-spacing: 0.15em; color: var(--bg);
+      background: var(--amber);
+      padding: 4px 10px;
+      z-index: 2;
+      text-transform: uppercase;
+    }
+    .product-tag.new { background: var(--moss); }
+    .product-info {
+      padding: 16px 0;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .product-name {
+      font-family: var(--ff-display); font-size: 1.15rem;
+      font-variation-settings: "opsz" 24, "SOFT" 50, "wght" 500;
+      color: var(--bone);
+    }
+    .product-type {
+      font-family: var(--ff-mono); font-size: 0.65rem;
+      color: var(--bone-mute); letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .product-price {
+      font-family: var(--ff-display); font-size: 1.15rem;
+      font-style: italic;
+      color: var(--amber);
+      font-variation-settings: "opsz" 24, "SOFT" 70, "wght" 500;
+    }
+
+    .product-visual svg { width: 60%; height: 60%; opacity: 0.85; }
+
+    /* =====================================================
+       TESTIMONIALS
+    ===================================================== */
+    #testimonials { padding-bottom: 120px; }
+    .testi-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 40px;
+    }
+    .testi {
+      padding: 40px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      position: relative;
+    }
+    .testi::before {
+      content: "\201C";
+      position: absolute; top: -20px; left: 30px;
+      font-family: var(--ff-display);
+      font-size: 7rem;
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 900;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .testi-body {
+      font-family: var(--ff-display);
+      font-size: 1.3rem;
+      font-variation-settings: "opsz" 24, "SOFT" 70, "wght" 400;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--bone);
+    }
+    .testi-foot {
+      margin-top: 24px; padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex; justify-content: space-between;
+      font-family: var(--ff-caps); font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .testi-foot .n { color: var(--bone); }
+    .testi-foot .loc { color: var(--moss); }
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+    #contact {
+      background: linear-gradient(180deg, var(--bg) 0%, #0f120e 100%);
+      border-top: 1px solid var(--line);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .reserve-grid {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px;
+      align-items: start;
+    }
+    .reserve-content h2 {
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 900;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+    }
+    .reserve-content h2 .it {
+      font-style: italic; color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+    }
+    .reserve-intro { color: var(--bone-dim); font-size: 1.1rem; margin-top: 28px; max-width: 520px; }
+    .reserve-details {
+      margin-top: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+    }
+    .rd-item .label {
+      font-family: var(--ff-mono); font-size: 0.65rem;
+      letter-spacing: 0.2em; color: var(--bone-mute);
+      text-transform: uppercase;
+    }
+    .rd-item .val {
+      font-family: var(--ff-display); font-size: 1.2rem;
+      font-variation-settings: "opsz" 24, "SOFT" 60, "wght" 500;
+      color: var(--bone);
+      margin-top: 6px;
+    }
+    .rd-item .val a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line-warm); }
+    .rd-item .val a:hover { color: var(--amber); border-color: var(--amber); }
+
+    .form {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 40px;
+    }
+    .form-grid { display: grid; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field label {
+      display: block;
+      font-family: var(--ff-mono); font-size: 0.7rem;
+      letter-spacing: 0.18em; color: var(--bone-mute);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      background: transparent;
+      border: none; border-bottom: 1px solid var(--line);
+      color: var(--bone);
+      padding: 12px 0;
+      font-family: var(--ff-body); font-size: 1.05rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--amber);
+    }
+    .field select { appearance: none; padding-right: 24px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M0 0l6 8 6-8z' fill='%23d89344'/></svg>");
+      background-repeat: no-repeat; background-position: right center; }
+    .field select option { background: var(--panel); color: var(--bone); }
+    .field textarea { resize: vertical; min-height: 100px; font-family: var(--ff-body); }
+    .form .btn { width: 100%; justify-content: center; border: none; cursor: pointer; font-size: 0.85rem; }
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 80px 0 40px;
+      background: var(--bg);
+    }
+    .foot-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+      padding-bottom: 60px; border-bottom: 1px solid var(--line);
+    }
+    .foot-brand { font-family: var(--ff-display);
+                  font-variation-settings: "opsz" 144, "SOFT" 60, "wght" 700;
+                  font-size: 2rem; line-height: 1; }
+    .foot-brand .it { font-style: italic; color: var(--amber); }
+    .foot-tag { color: var(--bone-dim); margin-top: 16px; max-width: 360px; line-height: 1.5; }
+    .foot-col h5 {
+      font-family: var(--ff-mono); font-size: 0.7rem;
+      letter-spacing: 0.2em; color: var(--bone-mute);
+      text-transform: uppercase;
+      margin: 0 0 16px;
+    }
+    .foot-col ul { list-style: none; margin: 0; padding: 0; }
+    .foot-col ul li { margin-bottom: 10px; }
+    .foot-col ul a { color: var(--bone); text-decoration: none; font-size: 0.98rem; transition: color 0.3s; }
+    .foot-col ul a:hover { color: var(--amber); }
+    .foot-bottom {
+      padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+      font-family: var(--ff-mono); font-size: 0.7rem;
+      letter-spacing: 0.12em; color: var(--bone-mute);
+      text-transform: uppercase;
+    }
+    .foot-tagline {
+      font-family: var(--ff-caps); font-size: 0.85rem;
+      color: var(--moss); letter-spacing: 0.1em;
+      text-transform: none;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+    @media (max-width: 1040px) {
+      .nav-links a:not(.cta) { display: none; }
+    }
+    @media (max-width: 980px) {
+      body { font-size: 17px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+      .hero-visual { height: 400px; order: -1; }
+      .hero-coords { position: static; text-align: left; margin-bottom: 20px; }
+      .manifeste-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sec-head { grid-template-columns: 1fr; gap: 16px; padding: 80px 0 40px; }
+      .calls-grid { grid-template-columns: 1fr; }
+      .lessons-grid { grid-template-columns: 1fr; }
+      .lesson.featured, .lesson.half, .lesson.third { grid-column: span 12; min-height: 260px; }
+      .service { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+      .service-cta { justify-self: start; }
+      .merch-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; }
+      .reserve-grid { grid-template-columns: 1fr; gap: 48px; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 0 20px; }
+      .nav { padding: 18px 20px; }
+      .hero { padding: 120px 0 60px; }
+      .merch-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <a href="#" class="brand">
+      <div class="brand-mark">M</div>
+      <div class="brand-txt">
+        Moose Calling <span style="color:var(--amber)">101</span>
+        <small data-i18n="nav.subtxt">ONLINE LESSONS · EST. MMXVI</small>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#manifesto" data-num="01" data-i18n="nav.manifesto">Manifesto</a>
+      <a href="#calls"     data-num="02" data-i18n="nav.calls">The Calls</a>
+      <a href="#lessons"   data-num="03" data-i18n="nav.lessons">Lessons</a>
+      <a href="#services"  data-num="04" data-i18n="nav.services">Services</a>
+      <a href="#shop"      data-num="05" data-i18n="nav.shop">Shop</a>
+      <a href="#contact"   class="cta" data-i18n="nav.cta">Contact →</a>
+      <button class="lang-toggle" id="langToggle" aria-label="Language toggle">
+        <span class="opt active" data-set-lang="en">EN</span>
+        <span class="sep">/</span>
+        <span class="opt" data-set-lang="fr">FR</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="topo"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-left reveal in">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          <span class="caps-sm" data-i18n="hero.eyebrow">NEW SEASON · AUTUMN RUT INCOMING</span>
+        </div>
+
+        <h1 class="hero-title">
+          Moose<br/>
+          <span class="it">Calling</span><br/>
+          101<span class="num">™</span>
+        </h1>
+
+        <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
+          The <em>ancestral art</em> of calling &amp; tracking moose — taught online by an Indigenous
+          instructor who grew up listening to the bush. Video course, private coaching, and
+          handmade birch bark horns shipped to your door.
+        </p>
+
+        <div class="hero-meta">
+          <div>
+            <div class="label" data-i18n="hero.meta.students.l">Students taught</div>
+            <div class="val" data-i18n="hero.meta.students.v">2,340+</div>
+          </div>
+          <div>
+            <div class="label" data-i18n="hero.meta.lessons.l">Signature lessons</div>
+            <div class="val" data-i18n="hero.meta.lessons.v">8 online</div>
+          </div>
+          <div>
+            <div class="label" data-i18n="hero.meta.countries.l">Countries reached</div>
+            <div class="val" data-i18n="hero.meta.countries.v">34</div>
+          </div>
+        </div>
+
+        <div class="hero-cta-row">
+          <a href="#lessons" class="btn btn-primary">
+            <span data-i18n="hero.cta.primary">See the lessons</span>
+            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+          <a href="#services" class="btn btn-ghost">
+            <span data-i18n="hero.cta.secondary">Book a private session</span>
+            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-coords mono">
+          <div><span data-i18n="hero.coords.season">SEASON</span> <span class="v" data-i18n="hero.coords.seasonV">Autumn rut</span></div>
+          <div><span data-i18n="hero.coords.wind">WIND</span> <span class="v">NNE · 8 km/h</span></div>
+          <div style="margin-top:10px"><span data-i18n="hero.coords.moon">MOON</span> <span class="v" data-i18n="hero.coords.moonV">★ Waxing gibbous</span></div>
+          <div><span data-i18n="hero.coords.temp">TEMP</span> <span class="v">4°C · 39°F</span></div>
+          <div><span data-i18n="hero.coords.hour">HOUR</span> <span class="v" data-i18n="hero.coords.hourV">First light</span></div>
+        </div>
+
+        <svg class="moose-silhouette" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Moose silhouette">
+          <defs>
+            <linearGradient id="antler" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#e8dfc8"/>
+              <stop offset="100%" stop-color="#b6ac92"/>
+            </linearGradient>
+            <filter id="roughen">
+              <feTurbulence baseFrequency="0.04" numOctaves="2" seed="3"/>
+              <feDisplacementMap in="SourceGraphic" scale="3"/>
+            </filter>
+          </defs>
+
+          <g fill="url(#antler)" filter="url(#roughen)">
+            <path d="M180 120 C 120 100, 80 140, 60 100 L 50 120 C 70 160, 110 160, 140 150 C 100 170, 70 200, 90 210 C 110 205, 140 180, 170 160 C 140 200, 120 230, 150 235 C 180 220, 200 190, 210 160 L 200 130 Z"/>
+            <path d="M320 120 C 380 100, 420 140, 440 100 L 450 120 C 430 160, 390 160, 360 150 C 400 170, 430 200, 410 210 C 390 205, 360 180, 330 160 C 360 200, 380 230, 350 235 C 320 220, 300 190, 290 160 L 300 130 Z"/>
+          </g>
+
+          <g fill="#1a1e18" stroke="#2a2f26" stroke-width="1">
+            <path d="M200 140 C 180 180, 180 220, 200 240 L 230 260 L 230 340 C 220 360, 215 400, 230 440 L 260 460 L 250 500 C 245 520, 260 540, 270 540 L 280 540 C 290 540, 300 530, 295 510 L 290 480 C 300 470, 310 460, 305 430 L 310 340 L 310 260 L 330 240 C 330 240, 340 220, 340 200 C 340 170, 320 145, 300 140 Z" />
+            <path d="M255 460 C 250 475, 245 495, 258 510 L 275 505 C 275 495, 270 485, 268 470 Z" fill="#0f120e"/>
+            <ellipse cx="218" cy="190" rx="3" ry="4" fill="#d89344"/>
+          </g>
+
+          <g opacity="0.35" fill="none" stroke="#e8dfc8" stroke-width="1.2" stroke-linecap="round">
+            <path d="M250 525 C 260 550, 280 555, 290 545">
+              <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <path d="M260 540 C 280 570, 310 575, 320 560">
+              <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite" begin="0.5s"/>
+            </path>
+            <path d="M270 555 C 300 580, 330 585, 350 575">
+              <animate attributeName="opacity" values="0.1;0.3;0.1" dur="5s" repeatCount="indefinite" begin="1s"/>
+            </path>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="fog"></div>
+    <div class="scroll-ind" data-i18n="hero.scroll">Scroll</div>
+  </section>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <span data-i18n="marquee.1">Autumn rut</span><span class="sep">★</span>
+      <span data-i18n="marquee.2">Birch bark horn</span><span class="sep">★</span>
+      <span data-i18n="marquee.3">Cow call</span><span class="sep">★</span>
+      <span data-i18n="marquee.4">Bull grunt</span><span class="sep">★</span>
+      <span data-i18n="marquee.5">Calf cry</span><span class="sep">★</span>
+      <span data-i18n="marquee.6">Read the wind</span><span class="sep">★</span>
+      <span data-i18n="marquee.1b">Autumn rut</span><span class="sep">★</span>
+      <span data-i18n="marquee.2b">Birch bark horn</span><span class="sep">★</span>
+      <span data-i18n="marquee.3b">Cow call</span><span class="sep">★</span>
+      <span data-i18n="marquee.4b">Bull grunt</span><span class="sep">★</span>
+      <span data-i18n="marquee.5b">Calf cry</span><span class="sep">★</span>
+      <span data-i18n="marquee.6b">Read the wind</span><span class="sep">★</span>
+    </div>
+  </div>
+
+  <!-- ===================== MANIFESTO ===================== -->
+  <section class="manifeste" id="manifesto">
+    <div class="topo" style="opacity:0.25"></div>
+    <div class="wrap">
+      <div class="manifeste-grid">
+        <div class="reveal">
+          <p class="caps-sm" style="color:var(--moss); margin-bottom:28px" data-i18n="manifesto.eyebrow">— 01 · Manifesto</p>
+          <p class="manifeste-quote" data-i18n="manifesto.quote" data-i18n-html>
+            You don't <span class="hi">call</span> a moose.<br/>
+            You <span class="hi">answer</span> the bush.
+          </p>
+        </div>
+        <div class="manifeste-body reveal">
+          <p data-i18n="manifesto.p1" data-i18n-html>
+            My grandfather put a birch bark horn in my hands when I was eight. He told me:
+            <em>&ldquo;Listen before you blow.&rdquo;</em> Thirty years later, I pass the same thing on —
+            no shortcuts, no gimmicks.
+          </p>
+          <p data-i18n="manifesto.p2" data-i18n-html>
+            <strong style="color:var(--bone)">Moose Calling 101</strong> was born from a frustration:
+            too many hunters step into the bush with a plastic call and no respect for the animal.
+            My approach is different. Learning to call is learning to read the wind, the spruce, the
+            tracks — and to hush when the forest speaks.
+          </p>
+          <p data-i18n="manifesto.p3" data-i18n-html>
+            Every lesson, every recording review, every birch bark horn honours knowledge that
+            has been carried down for generations. It belongs to no one. It is only borrowed,
+            practiced, and handed forward.
+          </p>
+          <div class="sign" data-i18n="manifesto.sign">— YOUR INSTRUCTOR · INDIGENOUS KNOWLEDGE KEEPER</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CALLS ===================== -->
+  <section id="calls">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" data-i18n="calls.num">02 · Repertoire</div>
+        <div>
+          <h2 class="sec-title" data-i18n="calls.title" data-i18n-html>The three <span class="it">voices</span> of the bush.</h2>
+          <p class="sec-lede" data-i18n="calls.lede" data-i18n-html>
+            A moose speaks in more than one tongue. From the bull's deep territorial grunt
+            to the cow's plaintive drawn-out wail, every call has its season, its wind, its truth.
+          </p>
+        </div>
+      </div>
+
+      <div class="calls-grid">
+        <article class="call-card" data-call="cow">
+          <div class="call-num">№ 01</div>
+          <h3 class="call-name" data-i18n="calls.c1.name" data-i18n-html>The <span class="it">cow</span> call</h3>
+          <div class="call-latin" data-i18n="calls.c1.latin">Alces americana · long wail</div>
+          <div class="waveform" data-waveform></div>
+          <p class="call-desc" data-i18n="calls.c1.desc" data-i18n-html>
+            The drawn-out, plaintive wail. This is the <em>king call</em> of the rut. Done right,
+            it pulls a bull across two kilometres of black spruce.
+          </p>
+          <div class="call-meta">
+            <span data-i18n="calls.c1.season">Season · late September</span>
+            <span class="play-btn"><span class="ico">▶</span> <span data-i18n="calls.listen">Listen</span></span>
+          </div>
+        </article>
+
+        <article class="call-card" data-call="bull">
+          <div class="call-num">№ 02</div>
+          <h3 class="call-name" data-i18n="calls.c2.name" data-i18n-html>The <span class="it">bull</span> grunt</h3>
+          <div class="call-latin" data-i18n="calls.c2.latin">Alces americana · short bellow</div>
+          <div class="waveform" data-waveform></div>
+          <p class="call-desc" data-i18n="calls.c2.desc" data-i18n-html>
+            Short, low, territorial. A challenge between bulls, often paired with the <em>rake</em>
+            of antlers on hardwood. The secret weapon of early season.
+          </p>
+          <div class="call-meta">
+            <span data-i18n="calls.c2.season">Season · early October</span>
+            <span class="play-btn"><span class="ico">▶</span> <span data-i18n="calls.listen2">Listen</span></span>
+          </div>
+        </article>
+
+        <article class="call-card" data-call="calf">
+          <div class="call-num">№ 03</div>
+          <h3 class="call-name" data-i18n="calls.c3.name" data-i18n-html>The <span class="it">calf</span> cry</h3>
+          <div class="call-latin" data-i18n="calls.c3.latin">Alces americana · high-pitched bleat</div>
+          <div class="waveform" data-waveform></div>
+          <p class="call-desc" data-i18n="calls.c3.desc" data-i18n-html>
+            The least known, the most moving. A thin cry that brings the cow back — and often
+            the bull that follows her. Use sparingly. It is a sacred call.
+          </p>
+          <div class="call-meta">
+            <span data-i18n="calls.c3.season">Season · all year</span>
+            <span class="play-btn"><span class="ico">▶</span> <span data-i18n="calls.listen3">Listen</span></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LESSONS ===================== -->
+  <section id="lessons">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" data-i18n="lessons.num">03 · Video lessons</div>
+        <div>
+          <h2 class="sec-title" data-i18n="lessons.title" data-i18n-html>Learn in<br/><span class="it">eight breaths</span>.</h2>
+          <p class="sec-lede" data-i18n="lessons.lede" data-i18n-html>
+            A full online curriculum — from choosing your horn to reading tracks — filmed at
+            moose height in the northern bush. Lifetime access, offline download.
+          </p>
+        </div>
+      </div>
+
+      <div class="lessons-grid">
+        <article class="lesson featured">
+          <div class="lesson-head">
+            <div class="lesson-num">01</div>
+            <div class="lesson-badge live" data-i18n="lessons.b.free">● Free lesson</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l1.title" data-i18n-html>Choosing your <span class="it">horn</span></h3>
+          <p class="lesson-excerpt" data-i18n="lessons.l1.ex" data-i18n-html>
+            Birch bark, fibreglass, plastic — what each material does to the sound, and why my
+            grandfather only worked with nine-year birch.
+          </p>
+          <div class="lesson-meta">
+            <span data-i18n="lessons.l1.meta">22 min · 4K</span>
+            <span class="price" data-i18n="lessons.l1.price">Free</span>
+          </div>
+        </article>
+
+        <article class="lesson half">
+          <div class="lesson-head">
+            <div class="lesson-num">02</div>
+            <div class="lesson-badge" data-i18n="lessons.b.theory">Theory</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l2.title" data-i18n-html>Reading the <span class="it">wind</span></h3>
+          <div class="lesson-meta">
+            <span>18 min</span>
+            <span class="price" data-i18n="lessons.l2.price">$34</span>
+          </div>
+        </article>
+
+        <article class="lesson third">
+          <div class="lesson-head">
+            <div class="lesson-num">03</div>
+            <div class="lesson-badge" data-i18n="lessons.b.prac">Practice</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l3.title" data-i18n-html>The long <span class="it">wail</span></h3>
+          <div class="lesson-meta">
+            <span>27 min</span>
+            <span class="price" data-i18n="lessons.l3.price">$34</span>
+          </div>
+        </article>
+
+        <article class="lesson third">
+          <div class="lesson-head">
+            <div class="lesson-num">04</div>
+            <div class="lesson-badge" data-i18n="lessons.b.prac2">Practice</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l4.title" data-i18n-html>The territorial <span class="it">grunt</span></h3>
+          <div class="lesson-meta">
+            <span>19 min</span>
+            <span class="price" data-i18n="lessons.l4.price">$34</span>
+          </div>
+        </article>
+
+        <article class="lesson third">
+          <div class="lesson-head">
+            <div class="lesson-num">05</div>
+            <div class="lesson-badge" data-i18n="lessons.b.prac3">Practice</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l5.title" data-i18n-html>The calf <span class="it">cry</span></h3>
+          <div class="lesson-meta">
+            <span>24 min</span>
+            <span class="price" data-i18n="lessons.l5.price">$34</span>
+          </div>
+        </article>
+
+        <article class="lesson half">
+          <div class="lesson-head">
+            <div class="lesson-num">06</div>
+            <div class="lesson-badge" data-i18n="lessons.b.adv">Advanced</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l6.title" data-i18n-html>Antler <span class="it">raking</span></h3>
+          <div class="lesson-meta">
+            <span>31 min</span>
+            <span class="price" data-i18n="lessons.l6.price">$44</span>
+          </div>
+        </article>
+
+        <article class="lesson half">
+          <div class="lesson-head">
+            <div class="lesson-num">07</div>
+            <div class="lesson-badge" data-i18n="lessons.b.field">Field</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l7.title" data-i18n-html>Reading <span class="it">tracks</span></h3>
+          <div class="lesson-meta">
+            <span>41 min</span>
+            <span class="price" data-i18n="lessons.l7.price">$44</span>
+          </div>
+        </article>
+
+        <article class="lesson featured" style="grid-column: span 12; min-height: 240px; background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%); border-color: var(--line-warm);">
+          <div class="lesson-head">
+            <div class="lesson-num" style="color: var(--amber)">08</div>
+            <div class="lesson-badge live" data-i18n="lessons.b.master">★ Masterclass</div>
+          </div>
+          <h3 class="lesson-title" data-i18n="lessons.l8.title" data-i18n-html>The <span class="it">setup</span>: weaving all three voices like a score</h3>
+          <p class="lesson-excerpt" style="max-width: 720px" data-i18n="lessons.l8.ex" data-i18n-html>
+            The ultimate lesson: how to orchestrate cow, bull, and calf calls through a single
+            morning, reading wind, moon, and a bull's response. 73 minutes shot during a real rut.
+          </p>
+          <div class="lesson-meta">
+            <span data-i18n="lessons.l8.meta">73 min · 4K · bonus field notes</span>
+            <span class="price" data-i18n="lessons.l8.price">$89</span>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top: 60px; text-align: center;">
+        <a href="#" class="btn btn-primary">
+          <span data-i18n="lessons.bundleCta">Get the full course — $240</span>
+          <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" data-i18n="services.num">04 · Services</div>
+        <div>
+          <h2 class="sec-title" data-i18n="services.title" data-i18n-html>From <span class="it">private coaching</span> to handmade horns.</h2>
+          <p class="sec-lede" data-i18n="services.lede" data-i18n-html>
+            Four ways to go beyond the video course. Everything is online or shipped to your door.
+            Small cohorts. Patient learners preferred.
+          </p>
+        </div>
+      </div>
+
+      <div class="services-list">
+        <div class="service">
+          <div class="service-num">№ 01</div>
+          <div>
+            <h3 class="service-title" data-i18n="services.s1.title" data-i18n-html>Private <span class="it">1-on-1</span> lesson</h3>
+            <p class="service-desc" data-i18n="services.s1.desc" data-i18n-html>
+              One hour over Zoom, face to face. Send me your recording in advance; we break it
+              down together. Perfect for dialing in a call before your season.
+            </p>
+          </div>
+          <div class="service-price">$120<small data-i18n="services.s1.priceSub">/ hour</small></div>
+          <div class="service-cta">
+            <a href="#contact" data-i18n="services.cta.book">Book →</a>
+          </div>
+        </div>
+
+        <div class="service">
+          <div class="service-num">№ 02</div>
+          <div>
+            <h3 class="service-title" data-i18n="services.s2.title" data-i18n-html>Live <span class="it">group</span> masterclass</h3>
+            <p class="service-desc" data-i18n="services.s2.desc" data-i18n-html>
+              90-minute live online session, 6 students max, interactive coaching. You call, I
+              listen, I adjust — in real time. Runs monthly, September through November.
+            </p>
+          </div>
+          <div class="service-price">$180<small data-i18n="services.s2.priceSub">/ student</small></div>
+          <div class="service-cta">
+            <a href="#contact" data-i18n="services.cta.book2">Book →</a>
+          </div>
+        </div>
+
+        <div class="service">
+          <div class="service-num">№ 03</div>
+          <div>
+            <h3 class="service-title" data-i18n="services.s3.title" data-i18n-html>Recording <span class="it">review</span> (async)</h3>
+            <p class="service-desc" data-i18n="services.s3.desc" data-i18n-html>
+              Send me a recording of you calling. I send back a detailed video breakdown — what's
+              working, what's flat, what to practice next. Turnaround: 5 days.
+            </p>
+          </div>
+          <div class="service-price">$60<small data-i18n="services.s3.priceSub">/ recording</small></div>
+          <div class="service-cta">
+            <a href="#contact" data-i18n="services.cta.send">Send →</a>
+          </div>
+        </div>
+
+        <div class="service">
+          <div class="service-num">№ 04</div>
+          <div>
+            <h3 class="service-title" data-i18n="services.s4.title" data-i18n-html>Custom <span class="it">birch bark</span> horn</h3>
+            <p class="service-desc" data-i18n="services.s4.desc" data-i18n-html>
+              Hand-carved from nine-year birch, stitched with moose sinew. Each piece signed,
+              numbered, and packed with the story of its tree. 6–8 week build. Shipped worldwide.
+            </p>
+          </div>
+          <div class="service-price">$340<small data-i18n="services.s4.priceSub">/ unique piece</small></div>
+          <div class="service-cta">
+            <a href="#contact" data-i18n="services.cta.order">Order →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SHOP ===================== -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" data-i18n="shop.num">05 · Shop</div>
+        <div>
+          <h2 class="sec-title" data-i18n="shop.title" data-i18n-html>Honest <span class="it">objects</span>.</h2>
+          <p class="sec-lede" data-i18n="shop.lede" data-i18n-html>
+            Merch made with small-batch Northern Ontario makers. Screen prints, embroidery,
+            limited editions. Every sale funds teaching the next generation of young callers.
+          </p>
+        </div>
+      </div>
+
+      <div class="merch-grid">
+        <article class="product">
+          <div class="product-visual">
+            <span class="product-tag new" data-i18n="shop.tag.new">New</span>
+            <svg viewBox="0 0 200 200" fill="none">
+              <defs>
+                <linearGradient id="cap1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4a5f3a"/><stop offset="100%" stop-color="#2a3422"/>
+                </linearGradient>
+              </defs>
+              <path d="M30 110 Q30 60 100 50 Q170 60 170 110 L170 130 Q100 150 30 130 Z" fill="url(#cap1)"/>
+              <path d="M30 128 Q100 148 170 128 L175 150 Q100 165 25 150 Z" fill="#1a1e18"/>
+              <ellipse cx="100" cy="60" rx="20" ry="8" fill="#d89344" opacity="0.9"/>
+              <text x="100" y="64" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="9" fill="#0a0c0a">MC101</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p1.name">Embroidered &ldquo;Rack&rdquo; cap</div>
+              <div class="product-type" data-i18n="shop.p1.type">Corduroy · Moss green</div>
+            </div>
+            <div class="product-price">$48</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <path d="M40 50 L70 40 L80 55 L120 55 L130 40 L160 50 L170 80 L155 85 L155 160 L45 160 L45 85 L30 80 Z" fill="#1a1e18"/>
+              <path d="M55 80 L145 80 L145 155 L55 155 Z" fill="#0f120e"/>
+              <text x="100" y="110" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="22" fill="#d89344" font-style="italic">Moose</text>
+              <text x="100" y="132" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="9" fill="#ece3cb" letter-spacing="2">CALLING 101</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p2.name">Screen-printed tee</div>
+              <div class="product-type" data-i18n="shop.p2.type">Organic cotton · Forest black</div>
+            </div>
+            <div class="product-price">$42</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <span class="product-tag" data-i18n="shop.tag.ltd">Ltd ed.</span>
+            <svg viewBox="0 0 200 200" fill="none">
+              <defs>
+                <linearGradient id="birch" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#efe8d2"/>
+                  <stop offset="40%" stop-color="#c9bc95"/>
+                  <stop offset="70%" stop-color="#efe8d2"/>
+                  <stop offset="100%" stop-color="#a89768"/>
+                </linearGradient>
+              </defs>
+              <path d="M50 90 L155 60 L160 75 L160 125 L155 140 L50 110 Z" fill="url(#birch)" stroke="#2a2f26" stroke-width="1"/>
+              <line x1="70" y1="85" x2="70" y2="115" stroke="#2a2f26" stroke-width="0.5"/>
+              <line x1="90" y1="82" x2="90" y2="118" stroke="#2a2f26" stroke-width="0.5"/>
+              <line x1="110" y1="78" x2="110" y2="122" stroke="#2a2f26" stroke-width="0.5"/>
+              <line x1="130" y1="72" x2="130" y2="128" stroke="#2a2f26" stroke-width="0.5"/>
+              <path d="M50 90 L30 85 L30 115 L50 110 Z" fill="#1a1e18"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p3.name">Birch bark horn</div>
+              <div class="product-type" data-i18n="shop.p3.type">Signed · numbered · 1/12</div>
+            </div>
+            <div class="product-price">$340</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="70" fill="#0f120e" stroke="#d89344" stroke-width="2"/>
+              <circle cx="100" cy="100" r="55" fill="none" stroke="#d89344" stroke-width="0.5" opacity="0.5"/>
+              <path d="M80 90 C 75 85, 70 90, 72 95 L 85 100 L 85 115 L 88 120 L 95 120 L 95 110 L 105 110 L 110 125 L 115 125 L 115 110 L 115 100 L 120 95 L 120 90 C 118 85, 115 82, 110 83" fill="#d89344"/>
+              <path d="M70 80 L65 75 L62 78 L68 85 M78 78 L73 72 L70 75" stroke="#d89344" stroke-width="1.5" fill="none"/>
+              <path d="M112 82 L117 77 L120 80 L114 87 M120 80 L125 74 L128 77" stroke="#d89344" stroke-width="1.5" fill="none"/>
+              <text x="100" y="155" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="8" fill="#ece3cb" letter-spacing="2">MC · 101</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p4.name">Sticker pack</div>
+              <div class="product-type" data-i18n="shop.p4.type">Vinyl · 4 pieces</div>
+            </div>
+            <div class="product-price">$14</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <rect x="55" y="35" width="90" height="130" fill="#ece3cb" stroke="#2a2f26"/>
+              <rect x="55" y="35" width="90" height="12" fill="#5a1e10"/>
+              <text x="100" y="75" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="10" fill="#2a2f26" letter-spacing="1">FIELD</text>
+              <text x="100" y="95" text-anchor="middle" font-family="Fraunces" font-weight="900" font-style="italic" font-size="15" fill="#5a1e10">notebook</text>
+              <line x1="65" y1="110" x2="135" y2="110" stroke="#8ea864" stroke-width="0.5"/>
+              <line x1="65" y1="120" x2="135" y2="120" stroke="#8ea864" stroke-width="0.5"/>
+              <line x1="65" y1="130" x2="120" y2="130" stroke="#8ea864" stroke-width="0.5"/>
+              <line x1="65" y1="140" x2="135" y2="140" stroke="#8ea864" stroke-width="0.5"/>
+              <line x1="65" y1="150" x2="110" y2="150" stroke="#8ea864" stroke-width="0.5"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p5.name">Field notebook</div>
+              <div class="product-type" data-i18n="shop.p5.type">120 pages · leather bound</div>
+            </div>
+            <div class="product-price">$32</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <path d="M75 50 L75 65 L70 75 L70 160 Q70 170 80 170 L120 170 Q130 170 130 160 L130 75 L125 65 L125 50 Z" fill="#1a1e18" stroke="#d89344"/>
+              <path d="M83 50 L117 50 L117 45 L83 45 Z" fill="#d89344"/>
+              <circle cx="100" cy="115" r="22" fill="none" stroke="#d89344" stroke-width="1.2"/>
+              <text x="100" y="112" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="14" fill="#d89344" font-style="italic">MC</text>
+              <text x="100" y="124" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="6" fill="#d89344" letter-spacing="1">101</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p6.name">Engraved flask</div>
+              <div class="product-type" data-i18n="shop.p6.type">Stainless steel · 8 oz</div>
+            </div>
+            <div class="product-price">$58</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <rect x="45" y="55" width="110" height="90" fill="#1a1e18"/>
+              <rect x="48" y="58" width="104" height="84" fill="none" stroke="#d89344" stroke-width="0.8"/>
+              <text x="100" y="85" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="8" fill="#b6ac92" letter-spacing="2">POSTER № 03</text>
+              <text x="100" y="110" text-anchor="middle" font-family="Fraunces" font-weight="900" font-size="22" fill="#ece3cb" font-style="italic">The Rut</text>
+              <text x="100" y="128" text-anchor="middle" font-family="IM Fell DW Pica SC" font-size="7" fill="#8ea864" letter-spacing="3">SEPT · OCT · MMXXVI</text>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p7.name">&ldquo;The Rut&rdquo; poster</div>
+              <div class="product-type" data-i18n="shop.p7.type">Screen print · 18×24&ldquo;</div>
+            </div>
+            <div class="product-price">$55</div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product-visual">
+            <svg viewBox="0 0 200 200" fill="none">
+              <path d="M40 110 L130 100 L155 95 L160 100 L155 105 L130 110 Z" fill="#c9bc95" stroke="#2a2f26"/>
+              <rect x="30" y="100" width="45" height="20" fill="#5a1e10" rx="2"/>
+              <rect x="30" y="100" width="45" height="20" fill="none" stroke="#2a2f26" stroke-width="0.5"/>
+              <circle cx="45" cy="110" r="1.5" fill="#d89344"/>
+              <circle cx="60" cy="110" r="1.5" fill="#d89344"/>
+            </svg>
+          </div>
+          <div class="product-info">
+            <div>
+              <div class="product-name" data-i18n="shop.p8.name">Gift card</div>
+              <div class="product-type" data-i18n="shop.p8.type">Digital · any amount</div>
+            </div>
+            <div class="product-price">$50+</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section id="testimonials">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-num" data-i18n="testi.num">06 · Word of mouth</div>
+        <div>
+          <h2 class="sec-title" data-i18n="testi.title" data-i18n-html>What callers<br/>are <span class="it">saying</span>.</h2>
+        </div>
+      </div>
+
+      <div class="testi-grid">
+        <div class="testi">
+          <p class="testi-body" data-i18n="testi.t1.body">
+            Fifteen years hunting moose and I'd never actually seen one. After the masterclass
+            I called three in a week. This instructor knows something the magazines don't.
+          </p>
+          <div class="testi-foot">
+            <span class="n" data-i18n="testi.t1.n">Mark L.</span>
+            <span class="loc" data-i18n="testi.t1.loc">Thunder Bay, ON</span>
+          </div>
+        </div>
+
+        <div class="testi">
+          <p class="testi-body" data-i18n="testi.t2.body">
+            This isn't just a calling course. It's a way to step back into the bush with respect.
+            My ten-year-old understood more after one live class than he did after three seasons
+            with me.
+          </p>
+          <div class="testi-foot">
+            <span class="n" data-i18n="testi.t2.n">Julie C.</span>
+            <span class="loc" data-i18n="testi.t2.loc">Sudbury, ON</span>
+          </div>
+        </div>
+
+        <div class="testi">
+          <p class="testi-body" data-i18n="testi.t3.body">
+            The birch bark horn he made me — I won't let it out of my sight. The sound that
+            comes out of that thing is from another planet. And the story behind it, pure poetry.
+          </p>
+          <div class="testi-foot">
+            <span class="n" data-i18n="testi.t3.n">Peter T.</span>
+            <span class="loc" data-i18n="testi.t3.loc">Anchorage, AK</span>
+          </div>
+        </div>
+
+        <div class="testi">
+          <p class="testi-body" data-i18n="testi.t4.body">
+            The video course is worth every penny of $240. The production is cinematic — you are
+            literally in the bush with him. And the wind lesson alone changed how I hunt.
+          </p>
+          <div class="testi-foot">
+            <span class="n" data-i18n="testi.t4.n">Steve D.</span>
+            <span class="loc" data-i18n="testi.t4.loc">Stockholm, SE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="topo" style="opacity:0.2"></div>
+    <div class="wrap">
+      <div class="reserve-grid">
+        <div class="reserve-content">
+          <p class="caps-sm" style="color:var(--moss); margin-bottom:24px" data-i18n="contact.eyebrow">— 07 · Get in touch</p>
+          <h2 data-i18n="contact.title" data-i18n-html>
+            Come <span class="it">blow</span><br/>
+            into the bush.
+          </h2>
+          <p class="reserve-intro" data-i18n="contact.intro" data-i18n-html>
+            Each season I take on a limited number of students. Drop me a line. I reply
+            personally and we talk through the format that fits you before booking.
+          </p>
+
+          <div class="reserve-details">
+            <div class="rd-item">
+              <div class="label" data-i18n="contact.email.l">Email</div>
+              <div class="val"><a href="mailto:hello@moosecalling101.ca">hello@moosecalling101.ca</a></div>
+            </div>
+            <div class="rd-item">
+              <div class="label" data-i18n="contact.response.l">Response time</div>
+              <div class="val" data-i18n="contact.response.v">Within 48 hours</div>
+            </div>
+            <div class="rd-item">
+              <div class="label" data-i18n="contact.insta.l">Instagram</div>
+              <div class="val"><a href="#">@moosecalling101</a></div>
+            </div>
+            <div class="rd-item">
+              <div class="label" data-i18n="contact.yt.l">YouTube</div>
+              <div class="val"><a href="#">/ moosecalling101</a></div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form" onsubmit="event.preventDefault(); alert(window.__lang==='fr' ? 'Merci. On se reparle sous 48 h.' : 'Thanks. Talk soon — within 48 hours.');">
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="field">
+                <label for="name" data-i18n="form.name.l">Name</label>
+                <input id="name" type="text" required data-i18n-placeholder data-i18n="form.name.p" placeholder="Your name" />
+              </div>
+              <div class="field">
+                <label for="tel" data-i18n="form.tel.l">Phone</label>
+                <input id="tel" type="tel" data-i18n-placeholder data-i18n="form.tel.p" placeholder="Optional" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="form.email.l">Email</label>
+              <input id="email" type="email" required data-i18n-placeholder data-i18n="form.email.p" placeholder="you@example.com" />
+            </div>
+            <div class="field">
+              <label for="format" data-i18n="form.format.l">Interested in</label>
+              <select id="format" required>
+                <option value="" data-i18n="form.format.opt0">Choose a format…</option>
+                <option data-i18n="form.format.opt1">Private 1-on-1 lesson — $120</option>
+                <option data-i18n="form.format.opt2">Group masterclass — $180</option>
+                <option data-i18n="form.format.opt3">Recording review — $60</option>
+                <option data-i18n="form.format.opt4">Custom birch bark horn — $340</option>
+                <option data-i18n="form.format.opt5">Full video course — $240</option>
+                <option data-i18n="form.format.opt6">Something else — just want to chat</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="msg" data-i18n="form.msg.l">Your message</label>
+              <textarea id="msg" rows="4" data-i18n-placeholder data-i18n="form.msg.p" placeholder="Tell me about your experience, your questions, what season you're planning for…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span data-i18n="form.submit">Send</span>
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">Moose<br/><span class="it">Calling</span> 101</div>
+          <p class="foot-tag" data-i18n="foot.tag">
+            The ancestral art of calling and tracking moose, taught online by an
+            Indigenous instructor.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot.nav">Navigate</h5>
+          <ul>
+            <li><a href="#manifesto" data-i18n="nav.manifesto">Manifesto</a></li>
+            <li><a href="#calls" data-i18n="nav.calls">The Calls</a></li>
+            <li><a href="#lessons" data-i18n="nav.lessons">Lessons</a></li>
+            <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot.shop">Shop</h5>
+          <ul>
+            <li><a href="#shop" data-i18n="foot.shop.merch">Merch</a></li>
+            <li><a href="#shop" data-i18n="foot.shop.horns">Birch bark horns</a></li>
+            <li><a href="#shop" data-i18n="foot.shop.gift">Gift card</a></li>
+            <li><a href="#" data-i18n="foot.shop.ship">Shipping</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot.follow">Follow</h5>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#" data-i18n="foot.follow.news">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <div data-i18n="foot.copyright">© MMXXVI · Moose Calling 101 · All rights reserved</div>
+        <div class="foot-tagline" data-i18n="foot.tagline">⚘ Taught with respect. Shared with care. ⚘</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Dictionnaire bilingue =====
+    const i18n = {
+      en: {
+        "nav.subtxt": "ONLINE LESSONS · EST. MMXVI",
+        "nav.manifesto": "Manifesto",
+        "nav.calls": "The Calls",
+        "nav.lessons": "Lessons",
+        "nav.services": "Services",
+        "nav.shop": "Shop",
+        "nav.cta": "Contact →",
+
+        "hero.eyebrow": "NEW SEASON · AUTUMN RUT INCOMING",
+        "hero.subtitle": "The <em>ancestral art</em> of calling &amp; tracking moose — taught online by an Indigenous instructor who grew up listening to the bush. Video course, private coaching, and handmade birch bark horns shipped to your door.",
+        "hero.meta.students.l": "Students taught",
+        "hero.meta.students.v": "2,340+",
+        "hero.meta.lessons.l": "Signature lessons",
+        "hero.meta.lessons.v": "8 online",
+        "hero.meta.countries.l": "Countries reached",
+        "hero.meta.countries.v": "34",
+        "hero.cta.primary": "See the lessons",
+        "hero.cta.secondary": "Book a private session",
+        "hero.coords.season": "SEASON",
+        "hero.coords.seasonV": "Autumn rut",
+        "hero.coords.wind": "WIND",
+        "hero.coords.moon": "MOON",
+        "hero.coords.moonV": "★ Waxing gibbous",
+        "hero.coords.temp": "TEMP",
+        "hero.coords.hour": "HOUR",
+        "hero.coords.hourV": "First light",
+        "hero.scroll": "Scroll",
+
+        "marquee.1": "Autumn rut", "marquee.2": "Birch bark horn", "marquee.3": "Cow call",
+        "marquee.4": "Bull grunt", "marquee.5": "Calf cry", "marquee.6": "Read the wind",
+        "marquee.1b": "Autumn rut", "marquee.2b": "Birch bark horn", "marquee.3b": "Cow call",
+        "marquee.4b": "Bull grunt", "marquee.5b": "Calf cry", "marquee.6b": "Read the wind",
+
+        "manifesto.eyebrow": "— 01 · Manifesto",
+        "manifesto.quote": "You don't <span class='hi'>call</span> a moose.<br/>You <span class='hi'>answer</span> the bush.",
+        "manifesto.p1": "My grandfather put a birch bark horn in my hands when I was eight. He told me: <em>&ldquo;Listen before you blow.&rdquo;</em> Thirty years later, I pass the same thing on — no shortcuts, no gimmicks.",
+        "manifesto.p2": "<strong style='color:var(--bone)'>Moose Calling 101</strong> was born from a frustration: too many hunters step into the bush with a plastic call and no respect for the animal. My approach is different. Learning to call is learning to read the wind, the spruce, the tracks — and to hush when the forest speaks.",
+        "manifesto.p3": "Every lesson, every recording review, every birch bark horn honours knowledge that has been carried down for generations. It belongs to no one. It is only borrowed, practiced, and handed forward.",
+        "manifesto.sign": "— YOUR INSTRUCTOR · INDIGENOUS KNOWLEDGE KEEPER",
+
+        "calls.num": "02 · Repertoire",
+        "calls.title": "The three <span class='it'>voices</span> of the bush.",
+        "calls.lede": "A moose speaks in more than one tongue. From the bull's deep territorial grunt to the cow's plaintive drawn-out wail, every call has its season, its wind, its truth.",
+        "calls.c1.name": "The <span class='it'>cow</span> call",
+        "calls.c1.latin": "Alces americana · long wail",
+        "calls.c1.desc": "The drawn-out, plaintive wail. This is the <em>king call</em> of the rut. Done right, it pulls a bull across two kilometres of black spruce.",
+        "calls.c1.season": "Season · late September",
+        "calls.c2.name": "The <span class='it'>bull</span> grunt",
+        "calls.c2.latin": "Alces americana · short bellow",
+        "calls.c2.desc": "Short, low, territorial. A challenge between bulls, often paired with the <em>rake</em> of antlers on hardwood. The secret weapon of early season.",
+        "calls.c2.season": "Season · early October",
+        "calls.c3.name": "The <span class='it'>calf</span> cry",
+        "calls.c3.latin": "Alces americana · high-pitched bleat",
+        "calls.c3.desc": "The least known, the most moving. A thin cry that brings the cow back — and often the bull that follows her. Use sparingly. It is a sacred call.",
+        "calls.c3.season": "Season · all year",
+        "calls.listen": "Listen", "calls.listen2": "Listen", "calls.listen3": "Listen",
+
+        "lessons.num": "03 · Video lessons",
+        "lessons.title": "Learn in<br/><span class='it'>eight breaths</span>.",
+        "lessons.lede": "A full online curriculum — from choosing your horn to reading tracks — filmed at moose height in the northern bush. Lifetime access, offline download.",
+        "lessons.b.free": "● Free lesson",
+        "lessons.b.theory": "Theory", "lessons.b.prac": "Practice", "lessons.b.prac2": "Practice",
+        "lessons.b.prac3": "Practice", "lessons.b.adv": "Advanced", "lessons.b.field": "Field",
+        "lessons.b.master": "★ Masterclass",
+        "lessons.l1.title": "Choosing your <span class='it'>horn</span>",
+        "lessons.l1.ex": "Birch bark, fibreglass, plastic — what each material does to the sound, and why my grandfather only worked with nine-year birch.",
+        "lessons.l1.meta": "22 min · 4K", "lessons.l1.price": "Free",
+        "lessons.l2.title": "Reading the <span class='it'>wind</span>", "lessons.l2.price": "$34",
+        "lessons.l3.title": "The long <span class='it'>wail</span>", "lessons.l3.price": "$34",
+        "lessons.l4.title": "The territorial <span class='it'>grunt</span>", "lessons.l4.price": "$34",
+        "lessons.l5.title": "The calf <span class='it'>cry</span>", "lessons.l5.price": "$34",
+        "lessons.l6.title": "Antler <span class='it'>raking</span>", "lessons.l6.price": "$44",
+        "lessons.l7.title": "Reading <span class='it'>tracks</span>", "lessons.l7.price": "$44",
+        "lessons.l8.title": "The <span class='it'>setup</span>: weaving all three voices like a score",
+        "lessons.l8.ex": "The ultimate lesson: how to orchestrate cow, bull, and calf calls through a single morning, reading wind, moon, and a bull's response. 73 minutes shot during a real rut.",
+        "lessons.l8.meta": "73 min · 4K · bonus field notes", "lessons.l8.price": "$89",
+        "lessons.bundleCta": "Get the full course — $240",
+
+        "services.num": "04 · Services",
+        "services.title": "From <span class='it'>private coaching</span> to handmade horns.",
+        "services.lede": "Four ways to go beyond the video course. Everything is online or shipped to your door. Small cohorts. Patient learners preferred.",
+        "services.s1.title": "Private <span class='it'>1-on-1</span> lesson",
+        "services.s1.desc": "One hour over Zoom, face to face. Send me your recording in advance; we break it down together. Perfect for dialing in a call before your season.",
+        "services.s1.priceSub": "/ hour",
+        "services.s2.title": "Live <span class='it'>group</span> masterclass",
+        "services.s2.desc": "90-minute live online session, 6 students max, interactive coaching. You call, I listen, I adjust — in real time. Runs monthly, September through November.",
+        "services.s2.priceSub": "/ student",
+        "services.s3.title": "Recording <span class='it'>review</span> (async)",
+        "services.s3.desc": "Send me a recording of you calling. I send back a detailed video breakdown — what's working, what's flat, what to practice next. Turnaround: 5 days.",
+        "services.s3.priceSub": "/ recording",
+        "services.s4.title": "Custom <span class='it'>birch bark</span> horn",
+        "services.s4.desc": "Hand-carved from nine-year birch, stitched with moose sinew. Each piece signed, numbered, and packed with the story of its tree. 6–8 week build. Shipped worldwide.",
+        "services.s4.priceSub": "/ unique piece",
+        "services.cta.book": "Book →", "services.cta.book2": "Book →",
+        "services.cta.send": "Send →", "services.cta.order": "Order →",
+
+        "shop.num": "05 · Shop",
+        "shop.title": "Honest <span class='it'>objects</span>.",
+        "shop.lede": "Merch made with small-batch Northern Ontario makers. Screen prints, embroidery, limited editions. Every sale funds teaching the next generation of young callers.",
+        "shop.tag.new": "New", "shop.tag.ltd": "Ltd ed.",
+        "shop.p1.name": "Embroidered &ldquo;Rack&rdquo; cap", "shop.p1.type": "Corduroy · Moss green",
+        "shop.p2.name": "Screen-printed tee", "shop.p2.type": "Organic cotton · Forest black",
+        "shop.p3.name": "Birch bark horn", "shop.p3.type": "Signed · numbered · 1/12",
+        "shop.p4.name": "Sticker pack", "shop.p4.type": "Vinyl · 4 pieces",
+        "shop.p5.name": "Field notebook", "shop.p5.type": "120 pages · leather bound",
+        "shop.p6.name": "Engraved flask", "shop.p6.type": "Stainless steel · 8 oz",
+        "shop.p7.name": "&ldquo;The Rut&rdquo; poster", "shop.p7.type": "Screen print · 18×24\"",
+        "shop.p8.name": "Gift card", "shop.p8.type": "Digital · any amount",
+
+        "testi.num": "06 · Word of mouth",
+        "testi.title": "What callers<br/>are <span class='it'>saying</span>.",
+        "testi.t1.body": "Fifteen years hunting moose and I'd never actually seen one. After the masterclass I called three in a week. This instructor knows something the magazines don't.",
+        "testi.t1.n": "Mark L.", "testi.t1.loc": "Thunder Bay, ON",
+        "testi.t2.body": "This isn't just a calling course. It's a way to step back into the bush with respect. My ten-year-old understood more after one live class than he did after three seasons with me.",
+        "testi.t2.n": "Julie C.", "testi.t2.loc": "Sudbury, ON",
+        "testi.t3.body": "The birch bark horn he made me — I won't let it out of my sight. The sound that comes out of that thing is from another planet. And the story behind it, pure poetry.",
+        "testi.t3.n": "Peter T.", "testi.t3.loc": "Anchorage, AK",
+        "testi.t4.body": "The video course is worth every penny of $240. The production is cinematic — you are literally in the bush with him. And the wind lesson alone changed how I hunt.",
+        "testi.t4.n": "Steve D.", "testi.t4.loc": "Stockholm, SE",
+
+        "contact.eyebrow": "— 07 · Get in touch",
+        "contact.title": "Come <span class='it'>blow</span><br/>into the bush.",
+        "contact.intro": "Each season I take on a limited number of students. Drop me a line. I reply personally and we talk through the format that fits you before booking.",
+        "contact.email.l": "Email",
+        "contact.response.l": "Response time",
+        "contact.response.v": "Within 48 hours",
+        "contact.insta.l": "Instagram",
+        "contact.yt.l": "YouTube",
+
+        "form.name.l": "Name", "form.name.p": "Your name",
+        "form.tel.l": "Phone", "form.tel.p": "Optional",
+        "form.email.l": "Email", "form.email.p": "you@example.com",
+        "form.format.l": "Interested in",
+        "form.format.opt0": "Choose a format…",
+        "form.format.opt1": "Private 1-on-1 lesson — $120",
+        "form.format.opt2": "Group masterclass — $180",
+        "form.format.opt3": "Recording review — $60",
+        "form.format.opt4": "Custom birch bark horn — $340",
+        "form.format.opt5": "Full video course — $240",
+        "form.format.opt6": "Something else — just want to chat",
+        "form.msg.l": "Your message",
+        "form.msg.p": "Tell me about your experience, your questions, what season you're planning for…",
+        "form.submit": "Send",
+
+        "foot.tag": "The ancestral art of calling and tracking moose, taught online by an Indigenous instructor.",
+        "foot.nav": "Navigate", "foot.shop": "Shop", "foot.follow": "Follow",
+        "foot.shop.merch": "Merch", "foot.shop.horns": "Birch bark horns",
+        "foot.shop.gift": "Gift card", "foot.shop.ship": "Shipping",
+        "foot.follow.news": "Newsletter",
+        "foot.copyright": "© MMXXVI · Moose Calling 101 · All rights reserved",
+        "foot.tagline": "⚘ Taught with respect. Shared with care. ⚘"
+      },
+      fr: {
+        "nav.subtxt": "COURS EN LIGNE · EST. MMXVI",
+        "nav.manifesto": "Manifeste",
+        "nav.calls": "Les appels",
+        "nav.lessons": "Leçons",
+        "nav.services": "Services",
+        "nav.shop": "Boutique",
+        "nav.cta": "Contact →",
+
+        "hero.eyebrow": "NOUVELLE SAISON · LE RUT APPROCHE",
+        "hero.subtitle": "L'<em>art ancestral</em> d'appeler et de traquer l'orignal — enseigné en ligne par un professeur autochtone qui a grandi en écoutant la forêt. Cursus vidéo, coaching privé et porte-voix en écorce de bouleau expédiés jusque chez vous.",
+        "hero.meta.students.l": "Élèves formés",
+        "hero.meta.students.v": "2 340 +",
+        "hero.meta.lessons.l": "Leçons signature",
+        "hero.meta.lessons.v": "8 en ligne",
+        "hero.meta.countries.l": "Pays rejoints",
+        "hero.meta.countries.v": "34",
+        "hero.cta.primary": "Voir les leçons",
+        "hero.cta.secondary": "Réserver une séance privée",
+        "hero.coords.season": "SAISON",
+        "hero.coords.seasonV": "Rut d'automne",
+        "hero.coords.wind": "VENT",
+        "hero.coords.moon": "LUNE",
+        "hero.coords.moonV": "★ Gibbeuse croissante",
+        "hero.coords.temp": "TEMP.",
+        "hero.coords.hour": "HEURE",
+        "hero.coords.hourV": "Première lueur",
+        "hero.scroll": "Faites défiler",
+
+        "marquee.1": "Rut d'automne", "marquee.2": "Porte-voix en écorce", "marquee.3": "Appel de la femelle",
+        "marquee.4": "Grunt du mâle", "marquee.5": "Cri du veau", "marquee.6": "Lire le vent",
+        "marquee.1b": "Rut d'automne", "marquee.2b": "Porte-voix en écorce", "marquee.3b": "Appel de la femelle",
+        "marquee.4b": "Grunt du mâle", "marquee.5b": "Cri du veau", "marquee.6b": "Lire le vent",
+
+        "manifesto.eyebrow": "— 01 · Manifeste",
+        "manifesto.quote": "On n'<span class='hi'>appelle</span> pas l'orignal.<br/>On <span class='hi'>répond</span> à la forêt.",
+        "manifesto.p1": "Mon grand-père m'a mis un porte-voix en écorce de bouleau entre les mains à huit ans. Il m'a dit : <em>« Écoute avant de souffler. »</em> Trente ans plus tard, je transmets la même chose — sans raccourci, sans fioriture.",
+        "manifesto.p2": "<strong style='color:var(--bone)'>Moose Calling 101</strong> est né d'une évidence : trop de chasseurs arrivent en forêt avec un appel en plastique et aucun respect pour l'animal. Ma démarche est autre. Apprendre l'appel, c'est apprendre à lire le vent, les sapins, les pistes — et à se taire quand la forêt parle.",
+        "manifesto.p3": "Chaque leçon, chaque révision d'enregistrement, chaque porte-voix honore un savoir transmis depuis des générations. Il n'appartient à personne. Il est seulement emprunté, pratiqué, puis remis au suivant.",
+        "manifesto.sign": "— VOTRE ENSEIGNANT · PORTEUR DE SAVOIR AUTOCHTONE",
+
+        "calls.num": "02 · Répertoire",
+        "calls.title": "Les trois <span class='it'>voix</span> de la forêt.",
+        "calls.lede": "L'orignal ne parle pas une seule langue. Du grave grunt territorial du mâle au gémissement long et plaintif de la femelle, chaque appel a sa saison, son vent, sa vérité.",
+        "calls.c1.name": "L'appel de la <span class='it'>femelle</span>",
+        "calls.c1.latin": "Alces americana · gémissement long",
+        "calls.c1.desc": "Le gémissement aigu, traînant, un peu plaintif. C'est <em>l'appel roi</em> de la saison du rut. Bien exécuté, il fait traverser un mâle à deux kilomètres à la ronde.",
+        "calls.c1.season": "Saison · fin septembre",
+        "calls.c2.name": "Le grunt du <span class='it'>mâle</span>",
+        "calls.c2.latin": "Alces americana · mugissement court",
+        "calls.c2.desc": "Court, sourd, territorial. Un défi entre mâles, souvent accompagné du <em>raclage</em> des panaches sur le bois dur. L'arme secrète en début de saison.",
+        "calls.c2.season": "Saison · début octobre",
+        "calls.c3.name": "Le cri du <span class='it'>veau</span>",
+        "calls.c3.latin": "Alces americana · plainte aiguë",
+        "calls.c3.desc": "Le moins connu, le plus bouleversant. Une plainte fine qui ramène la femelle — et souvent le mâle qui la suit. À utiliser avec parcimonie, car il est sacré.",
+        "calls.c3.season": "Saison · toute l'année",
+        "calls.listen": "Écouter", "calls.listen2": "Écouter", "calls.listen3": "Écouter",
+
+        "lessons.num": "03 · Leçons vidéo",
+        "lessons.title": "Apprendre en<br/><span class='it'>huit souffles</span>.",
+        "lessons.lede": "Un cursus complet en ligne — du choix du porte-voix à la lecture d'empreintes — filmé à hauteur d'orignal dans la forêt boréale. Accès à vie, téléchargement hors-ligne.",
+        "lessons.b.free": "● Leçon gratuite",
+        "lessons.b.theory": "Théorie", "lessons.b.prac": "Pratique", "lessons.b.prac2": "Pratique",
+        "lessons.b.prac3": "Pratique", "lessons.b.adv": "Avancé", "lessons.b.field": "Terrain",
+        "lessons.b.master": "★ Masterclass",
+        "lessons.l1.title": "Choisir son <span class='it'>porte-voix</span>",
+        "lessons.l1.ex": "Écorce de bouleau, fibre de verre, plastique — ce que chaque matériau change au son et pourquoi mon grand-père n'utilisait que le bouleau de neuf ans.",
+        "lessons.l1.meta": "22 min · 4K", "lessons.l1.price": "Gratuit",
+        "lessons.l2.title": "Lire le <span class='it'>vent</span>", "lessons.l2.price": "34 $",
+        "lessons.l3.title": "Le gémissement <span class='it'>long</span>", "lessons.l3.price": "34 $",
+        "lessons.l4.title": "Le grunt <span class='it'>territorial</span>", "lessons.l4.price": "34 $",
+        "lessons.l5.title": "Le cri du <span class='it'>veau</span>", "lessons.l5.price": "34 $",
+        "lessons.l6.title": "Le <span class='it'>raclage</span> des panaches", "lessons.l6.price": "44 $",
+        "lessons.l7.title": "Lecture de <span class='it'>pistes</span>", "lessons.l7.price": "44 $",
+        "lessons.l8.title": "La <span class='it'>composition</span> : enchaîner les trois voix comme une partition",
+        "lessons.l8.ex": "La leçon ultime : comment orchestrer femelle, grunt et veau dans la même aube, en lisant le vent, la lune et les réactions d'un mâle. 73 minutes tournées pendant un vrai rut.",
+        "lessons.l8.meta": "73 min · 4K · bonus field notes", "lessons.l8.price": "89 $",
+        "lessons.bundleCta": "Acheter le cursus complet — 240 $",
+
+        "services.num": "04 · Services",
+        "services.title": "Du <span class='it'>coaching privé</span> aux porte-voix artisanaux.",
+        "services.lede": "Quatre façons d'aller plus loin que le cursus vidéo. Tout est en ligne ou expédié chez vous. Petits groupes. Élèves patients privilégiés.",
+        "services.s1.title": "Cours privé <span class='it'>en tête-à-tête</span>",
+        "services.s1.desc": "Une heure sur Zoom, en face-à-face. Envoie-moi ton enregistrement à l'avance ; on le décortique ensemble. Idéal pour ajuster un appel avant ta saison.",
+        "services.s1.priceSub": "/ heure",
+        "services.s2.title": "Masterclass <span class='it'>en groupe</span> (en direct)",
+        "services.s2.desc": "Séance de 90 minutes en direct, 6 élèves maximum, coaching interactif. Tu appelles, j'écoute, j'ajuste — en temps réel. Tous les mois, de septembre à novembre.",
+        "services.s2.priceSub": "/ élève",
+        "services.s3.title": "Révision d'<span class='it'>enregistrement</span> (asynchrone)",
+        "services.s3.desc": "Envoie-moi un enregistrement de ton appel. Je te retourne une analyse vidéo détaillée — ce qui fonctionne, ce qui manque, ce qu'il faut pratiquer. Délai : 5 jours.",
+        "services.s3.priceSub": "/ enregistrement",
+        "services.s4.title": "Porte-voix <span class='it'>sur mesure</span>",
+        "services.s4.desc": "Taillé à la main dans un bouleau de neuf ans, cousu au nerf d'orignal. Chaque pièce signée, numérotée, accompagnée de son histoire d'arbre. 6 à 8 semaines de délai. Expédition internationale.",
+        "services.s4.priceSub": "/ pièce unique",
+        "services.cta.book": "Réserver →", "services.cta.book2": "Réserver →",
+        "services.cta.send": "Envoyer →", "services.cta.order": "Commander →",
+
+        "shop.num": "05 · Boutique",
+        "shop.title": "Objets <span class='it'>honnêtes</span>.",
+        "shop.lede": "Merch conçu avec des artisans du Nord de l'Ontario. Sérigraphies, broderies, éditions limitées. Chaque vente finance la transmission du savoir aux jeunes.",
+        "shop.tag.new": "Nouveau", "shop.tag.ltd": "Édition ltée",
+        "shop.p1.name": "Casquette brodée « Panache »", "shop.p1.type": "Velours côtelé · Vert mousse",
+        "shop.p2.name": "T-shirt sérigraphié", "shop.p2.type": "Coton bio · Noir forêt",
+        "shop.p3.name": "Porte-voix en bouleau", "shop.p3.type": "Signé · numéroté · 1/12",
+        "shop.p4.name": "Pack autocollants", "shop.p4.type": "Vinyle · 4 pièces",
+        "shop.p5.name": "Carnet de terrain", "shop.p5.type": "120 pages · reliure cuir",
+        "shop.p6.name": "Flasque gravée", "shop.p6.type": "Acier inox · 8 oz",
+        "shop.p7.name": "Affiche « The Rut »", "shop.p7.type": "Sérigraphie · 45×60 cm",
+        "shop.p8.name": "Carte-cadeau", "shop.p8.type": "Numérique · montant libre",
+
+        "testi.num": "06 · Le bouche-à-oreille",
+        "testi.title": "Ce qu'en disent<br/>les <span class='it'>chasseurs</span>.",
+        "testi.t1.body": "Quinze ans que je chassais l'orignal sans en voir un seul. Après la masterclass, j'en ai appelé trois en une semaine. Cet enseignant sait quelque chose que les magazines ne savent pas.",
+        "testi.t1.n": "Mark L.", "testi.t1.loc": "Thunder Bay, ON",
+        "testi.t2.body": "Ce n'est pas juste un cours. C'est une façon de remettre les pieds dans la forêt avec respect. Mon gars de dix ans a compris plus en un cours en direct qu'en trois saisons avec moi.",
+        "testi.t2.n": "Julie C.", "testi.t2.loc": "Sudbury, ON",
+        "testi.t3.body": "Le porte-voix en bouleau qu'il m'a taillé, je ne m'en sépare pas. Le son qui en sort, c'est une autre planète. Et l'histoire qui va avec, c'est de la poésie pure.",
+        "testi.t3.n": "Peter T.", "testi.t3.loc": "Anchorage, AK",
+        "testi.t4.body": "Les leçons vidéo valent chaque cent des 240 $. Tournage cinématographique — tu es littéralement dans la forêt avec lui. Et la leçon sur le vent a changé ma chasse.",
+        "testi.t4.n": "Steve D.", "testi.t4.loc": "Stockholm, SE",
+
+        "contact.eyebrow": "— 07 · Prendre contact",
+        "contact.title": "Viens <span class='it'>souffler</span><br/>dans le bois.",
+        "contact.intro": "Chaque saison, je ne prends qu'un nombre limité d'élèves. Écris-moi. Je réponds personnellement, et on parle du format qui te convient avant de réserver.",
+        "contact.email.l": "Courriel",
+        "contact.response.l": "Délai de réponse",
+        "contact.response.v": "Moins de 48 heures",
+        "contact.insta.l": "Instagram",
+        "contact.yt.l": "YouTube",
+
+        "form.name.l": "Nom", "form.name.p": "Ton nom",
+        "form.tel.l": "Téléphone", "form.tel.p": "Optionnel",
+        "form.email.l": "Courriel", "form.email.p": "toi@exemple.ca",
+        "form.format.l": "Format souhaité",
+        "form.format.opt0": "Choisir un format…",
+        "form.format.opt1": "Cours privé en tête-à-tête — 120 $",
+        "form.format.opt2": "Masterclass en groupe — 180 $",
+        "form.format.opt3": "Révision d'enregistrement — 60 $",
+        "form.format.opt4": "Porte-voix sur mesure — 340 $",
+        "form.format.opt5": "Cursus vidéo complet — 240 $",
+        "form.format.opt6": "Autre — j'aimerais simplement en parler",
+        "form.msg.l": "Ton message",
+        "form.msg.p": "Parle-moi de ton expérience, tes questions, la saison visée…",
+        "form.submit": "Envoyer",
+
+        "foot.tag": "L'art ancestral d'appeler et de traquer l'orignal, enseigné en ligne par un professeur autochtone.",
+        "foot.nav": "Naviguer", "foot.shop": "Boutique", "foot.follow": "Suivre",
+        "foot.shop.merch": "Merch", "foot.shop.horns": "Porte-voix",
+        "foot.shop.gift": "Carte-cadeau", "foot.shop.ship": "Livraison",
+        "foot.follow.news": "Infolettre",
+        "foot.copyright": "© MMXXVI · Moose Calling 101 · Tous droits réservés",
+        "foot.tagline": "⚘ Enseigné avec respect. Transmis avec soin. ⚘"
+      }
+    };
+
+    const titles = {
+      en: "Moose Calling 101 — The ancestral art of calling moose",
+      fr: "Moose Calling 101 — L'art ancestral d'appeler l'orignal"
+    };
+
+    window.__lang = 'en';
+
+    function applyLang(lang) {
+      window.__lang = lang;
+      document.documentElement.lang = lang;
+      document.title = titles[lang];
+      const dict = i18n[lang];
+      if (!dict) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (!(key in dict)) return;
+        const value = dict[key];
+        if (el.hasAttribute('data-i18n-placeholder')) {
+          el.setAttribute('placeholder', value);
+        } else if (el.hasAttribute('data-i18n-html')) {
+          el.innerHTML = value;
+        } else {
+          el.textContent = value;
+        }
+      });
+
+      document.querySelectorAll('.lang-toggle .opt').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.setLang === lang);
+      });
+
+      try { localStorage.setItem('mc101.lang', lang); } catch (e) {}
+    }
+
+    // Init lang from storage or browser
+    (function initLang() {
+      let saved = null;
+      try { saved = localStorage.getItem('mc101.lang'); } catch (e) {}
+      const browser = (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+      const startLang = saved || browser;
+      if (startLang === 'fr') applyLang('fr');
+      else applyLang('en');
+    })();
+
+    document.getElementById('langToggle').addEventListener('click', (e) => {
+      const target = e.target.closest('[data-set-lang]');
+      if (target) {
+        applyLang(target.dataset.setLang);
+      } else {
+        applyLang(window.__lang === 'en' ? 'fr' : 'en');
+      }
+    });
+
+    // ===== Nav scroll =====
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ===== Reveal on scroll =====
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.sec-head, .service, .lesson, .call-card, .product, .testi, .manifeste-body')
+      .forEach(el => { el.classList.add('reveal'); revealObs.observe(el); });
+
+    // ===== Waveforms =====
+    function buildWaveform(container, pattern) {
+      container.innerHTML = '';
+      const count = 48;
+      for (let i = 0; i < count; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        const h = pattern(i, count);
+        bar.style.height = (h * 100) + '%';
+        bar.style.animationDelay = (i * 0.02) + 's';
+        container.appendChild(bar);
+      }
+    }
+
+    const patterns = {
+      cow:  (i, n) => { const t = i / n; return 0.25 + Math.sin(t * Math.PI) * 0.65 + Math.sin(t * 18) * 0.15; },
+      bull: (i, n) => { const t = i / n; return 0.15 + (t < 0.2 ? Math.sin(t * 20) * 0.85 : Math.sin(t * 4) * 0.35) + Math.random() * 0.1; },
+      calf: (i, n) => { const t = i / n; return 0.2 + Math.sin(t * Math.PI * 2) * 0.55 + Math.sin(t * 30) * 0.2; }
+    };
+
+    document.querySelectorAll('.call-card').forEach(card => {
+      const call = card.dataset.call;
+      const wf = card.querySelector('[data-waveform]');
+      buildWaveform(wf, patterns[call]);
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.call-card').forEach(c => c.classList.remove('playing'));
+        card.classList.add('playing');
+        setTimeout(() => card.classList.remove('playing'), 3000);
+      });
+
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+
+    // ===== Parallax hero moose =====
+    const moose = document.querySelector('.moose-silhouette');
+    if (moose && window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 16;
+        const y = (e.clientY / window.innerHeight - 0.5) * 12;
+        moose.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    }
+  </script>
+
+</body>
+</html>
