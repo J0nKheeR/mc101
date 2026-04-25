@@ -6,6 +6,9 @@
   <title>Moose Calling 101 — The ancestral art of calling moose</title>
   <meta name="description" content="Custom moose calling tutorials, strategy videos, and live 1-on-1 coaching — from an Indigenous moose calling instructor. Taught online, made for your exact question." />
 
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
+  <link rel="apple-touch-icon" href="img/logo.jpg" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=IM+Fell+DW+Pica+SC&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -102,11 +105,21 @@
     .nav.scrolled { padding: 12px 32px; background: rgba(10,12,10,0.92); backdrop-filter: blur(8px); }
     .brand { display: flex; align-items: center; gap: 14px; color: var(--bone); text-decoration: none; }
     .brand-mark {
-      width: 42px; height: 42px; border: 1px solid var(--bone-dim);
+      width: 44px; height: 44px;
       border-radius: 50%;
-      display: grid; place-items: center;
-      font-family: var(--ff-display); font-weight: 900; font-size: 20px;
-      font-variation-settings: "opsz" 144, "SOFT" 20;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px var(--line-warm), 0 4px 14px rgba(0,0,0,0.4);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .brand:hover .brand-mark {
+      box-shadow: 0 0 0 1px var(--amber), 0 6px 18px rgba(216,147,68,0.35);
+      transform: scale(1.04);
+    }
+    .brand-mark img {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: cover;
     }
     .brand-txt { font-family: var(--ff-caps); font-size: 0.9rem; letter-spacing: 0.14em; line-height: 1.1; }
     .brand-txt small { display: block; font-size: 0.65rem; color: var(--bone-mute); letter-spacing: 0.2em; }
@@ -162,13 +175,14 @@
         linear-gradient(180deg, #0a0c0a 0%, #0f120e 100%);
       overflow: hidden;
     }
-    .hero-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px;
-      align-items: center; position: relative; z-index: 2;
+    .hero-stack {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      position: relative; z-index: 2;
     }
     .hero-eyebrow {
-      display: flex; align-items: center; gap: 16px;
-      margin-bottom: 48px; color: var(--moss);
+      display: inline-flex; align-items: center; gap: 16px;
+      margin-bottom: 28px; color: var(--moss);
     }
     .hero-eyebrow .dot {
       width: 8px; height: 8px; background: var(--amber); border-radius: 50%;
@@ -180,33 +194,24 @@
       50% { box-shadow: 0 0 20px var(--amber); transform: scale(1.2); }
     }
 
-    .hero-title {
-      font-size: clamp(4rem, 11vw, 11rem);
-      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 900;
-      line-height: 0.84;
-      letter-spacing: -0.035em;
-      color: var(--bone);
+    .hero-emblem {
+      width: clamp(240px, 42vw, 420px);
+      aspect-ratio: 1 / 1;
+      margin: 8px auto 36px;
+      position: relative;
     }
-    .hero-title .it {
-      font-style: italic;
-      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 700;
-      color: var(--amber);
-      font-weight: 700;
+    .hero-emblem .moose-silhouette {
+      width: 100%; height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 90px rgba(216,147,68,0.28));
+      animation: float 12s ease-in-out infinite;
     }
-    .hero-title .num {
-      display: inline-block;
-      font-size: 0.48em;
-      vertical-align: super;
-      color: var(--moss);
-      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
-      font-style: italic;
-      margin-left: 0.1em;
-    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
     .hero-subtitle {
-      margin-top: 36px;
-      max-width: 520px;
-      font-size: 1.15rem;
+      margin: 0 auto;
+      max-width: 600px;
+      font-size: 1.18rem;
       color: var(--bone-dim);
       line-height: 1.55;
     }
@@ -214,11 +219,13 @@
 
     .hero-meta {
       margin-top: 48px;
-      display: flex; gap: 32px; flex-wrap: wrap;
-      padding-top: 24px;
+      display: flex; gap: 48px; flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 28px;
       border-top: 1px solid var(--line);
+      width: 100%; max-width: 720px;
     }
-    .hero-meta > div { min-width: 0; }
+    .hero-meta > div { min-width: 0; text-align: center; }
     .hero-meta .label {
       font-family: var(--ff-mono); font-size: 0.68rem;
       color: var(--bone-mute); letter-spacing: 0.15em;
@@ -234,6 +241,7 @@
     .hero-cta-row {
       margin-top: 40px;
       display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+      justify-content: center;
     }
     .btn {
       display: inline-flex; align-items: center; gap: 12px;
@@ -262,23 +270,13 @@
     }
     .btn:hover .btn-arrow { transform: translateX(4px); }
 
-    .hero-visual {
-      position: relative;
-      height: 640px;
-      display: grid; place-items: center;
-    }
-    .hero-visual svg { width: 100%; height: 100%; max-width: 560px; }
-    .hero-visual .moose-silhouette {
-      filter: drop-shadow(0 0 80px rgba(216,147,68,0.18));
-      animation: float 8s ease-in-out infinite;
-    }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-
     .hero-coords {
-      position: absolute; top: 24px; right: 0;
+      position: absolute; top: 130px; right: 32px;
       font-family: var(--ff-mono); font-size: 0.68rem;
       color: var(--bone-mute); letter-spacing: 0.12em;
       text-align: right; line-height: 1.6;
+      z-index: 3;
+      opacity: 0.85;
     }
     .hero-coords .v { color: var(--moss); }
 
@@ -1073,6 +1071,247 @@
     }
     .booking-note strong { color: var(--bone); }
 
+    /* =====================================================
+       CHATBOT — FAB + panel
+    ===================================================== */
+    .chat-fab {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 900;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      background: var(--amber);
+      color: var(--bg);
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(216,147,68,0.35);
+      display: grid; place-items: center;
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .chat-fab:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 36px rgba(216,147,68,0.5);
+      background: var(--ember);
+    }
+    .chat-fab svg { width: 24px; height: 24px; transition: transform 0.3s; }
+    .chat-fab.open svg { transform: rotate(90deg) scale(0.9); }
+
+    .chat-fab-dot {
+      position: absolute; top: -2px; right: -2px;
+      width: 14px; height: 14px;
+      background: var(--moss);
+      border-radius: 50%;
+      border: 2.5px solid var(--bg);
+      animation: chatDotPulse 2.4s ease-in-out infinite;
+    }
+    .chat-fab.open .chat-fab-dot { display: none; }
+    @keyframes chatDotPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(142,168,100,0.7); }
+      50% { transform: scale(1.3); box-shadow: 0 0 0 8px rgba(142,168,100,0); }
+    }
+
+    /* Panel */
+    .chat-panel {
+      position: fixed;
+      bottom: 102px; right: 28px;
+      z-index: 899;
+      width: 380px;
+      max-height: 540px;
+      background: var(--panel);
+      border: 1px solid var(--line-warm);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(216,147,68,0.08);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .chat-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .chat-header {
+      padding: 16px 20px;
+      background: linear-gradient(135deg, var(--bg-2) 0%, var(--panel-2) 100%);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 12px;
+      flex-shrink: 0;
+    }
+    .chat-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px var(--amber), 0 0 14px rgba(216,147,68,0.3);
+    }
+    .chat-avatar img {
+      width: 100%; height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .chat-header-info { flex: 1; min-width: 0; }
+    .chat-header-name {
+      font-family: var(--ff-display);
+      font-variation-settings: "opsz" 24, "SOFT" 50, "wght" 600;
+      font-size: 1rem;
+      color: var(--bone);
+      line-height: 1.1;
+    }
+    .chat-header-name .it { font-style: italic; color: var(--amber); }
+    .chat-header-status {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bone-mute);
+      margin-top: 4px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .chat-header-status::before {
+      content: ""; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--moss);
+      box-shadow: 0 0 6px var(--moss);
+    }
+
+    .chat-messages {
+      flex: 1; overflow-y: auto;
+      padding: 18px;
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--panel);
+      min-height: 260px; max-height: 320px;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--line-warm); border-radius: 4px; }
+
+    .chat-msg {
+      max-width: 84%;
+      padding: 10px 14px;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      animation: chatMsgIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    @keyframes chatMsgIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-msg.bot {
+      align-self: flex-start;
+      background: var(--panel-2);
+      color: var(--bone);
+      border: 1px solid var(--line);
+      border-bottom-left-radius: 2px;
+    }
+    .chat-msg.bot strong { color: var(--amber); font-weight: 600; }
+    .chat-msg.user {
+      align-self: flex-end;
+      background: var(--amber);
+      color: var(--bg);
+      border-bottom-right-radius: 2px;
+      font-weight: 500;
+    }
+
+    .chat-typing {
+      align-self: flex-start;
+      padding: 12px 16px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-bottom-left-radius: 2px;
+      display: none; gap: 5px; align-items: center;
+    }
+    .chat-typing.visible { display: flex; }
+    .chat-typing span {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--bone-mute);
+      animation: chatTyping 1.4s ease-in-out infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes chatTyping {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    .chat-quick-replies {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 0 18px 12px;
+      background: var(--panel);
+    }
+    .chat-quick-btn {
+      padding: 6px 12px;
+      border: 1px solid var(--line-warm);
+      background: transparent;
+      color: var(--bone-dim);
+      font-family: var(--ff-mono);
+      font-size: 0.66rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .chat-quick-btn:hover {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--bg);
+    }
+
+    .chat-input-area {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--line);
+      background: var(--bg-2);
+      flex-shrink: 0;
+    }
+    .chat-input {
+      flex: 1;
+      border: none; background: transparent;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      color: var(--bone);
+      outline: none;
+      padding: 6px 0;
+    }
+    .chat-input::placeholder { color: var(--bone-mute); }
+    .chat-send {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      background: var(--amber);
+      color: var(--bg);
+      cursor: pointer;
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      transition: all 0.25s;
+    }
+    .chat-send:hover { background: var(--ember); transform: scale(1.05); }
+    .chat-send svg { width: 16px; height: 16px; }
+
+    .chat-foot {
+      padding: 8px;
+      text-align: center;
+      font-family: var(--ff-mono);
+      font-size: 0.58rem; letter-spacing: 0.2em;
+      color: var(--bone-mute);
+      text-transform: uppercase;
+      background: var(--bg-2);
+      border-top: 1px solid var(--line);
+    }
+    .chat-foot strong { color: var(--amber); font-weight: 500; }
+
+    @media (max-width: 480px) {
+      .chat-panel {
+        right: 0; bottom: 0;
+        width: 100%; max-height: 100%;
+        height: 100%;
+        border: none;
+      }
+      .chat-fab { bottom: 18px; right: 18px; }
+    }
+
     /* Service type tag */
     .service-type {
       display: inline-block;
@@ -1093,9 +1332,8 @@
     }
     @media (max-width: 980px) {
       body { font-size: 17px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 60px; }
-      .hero-visual { height: 400px; order: -1; }
-      .hero-coords { position: static; text-align: left; margin-bottom: 20px; }
+      .hero-coords { display: none; }
+      .hero-meta { gap: 32px; }
       .manifeste-grid { grid-template-columns: 1fr; gap: 40px; }
       .sec-head { grid-template-columns: 1fr; gap: 16px; padding: 80px 0 40px; }
       .calls-grid { grid-template-columns: 1fr; }
@@ -1129,7 +1367,9 @@
   <!-- ===================== NAV ===================== -->
   <nav class="nav" id="nav">
     <a href="#" class="brand">
-      <div class="brand-mark">M</div>
+      <div class="brand-mark">
+        <img src="img/logo.jpg" alt="Moose Calling 101 logo" loading="eager" decoding="async" width="44" height="44" />
+      </div>
       <div class="brand-txt">
         Moose Calling <span style="color:var(--amber)">101</span>
         <small data-i18n="nav.subtxt">ONLINE LESSONS · EST. MMXVI</small>
@@ -1153,96 +1393,101 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="topo"></div>
-    <div class="wrap hero-grid">
-      <div class="hero-left reveal in">
-        <div class="hero-eyebrow">
-          <span class="dot"></span>
-          <span class="caps-sm" data-i18n="hero.eyebrow">NEW SEASON · AUTUMN RUT INCOMING</span>
+
+    <div class="hero-coords mono" aria-hidden="true">
+      <div><span data-i18n="hero.coords.season">SEASON</span> <span class="v" data-i18n="hero.coords.seasonV">Autumn rut</span></div>
+      <div><span data-i18n="hero.coords.wind">WIND</span> <span class="v">NNE · 8 km/h</span></div>
+      <div style="margin-top:10px"><span data-i18n="hero.coords.moon">MOON</span> <span class="v" data-i18n="hero.coords.moonV">★ Waxing gibbous</span></div>
+      <div><span data-i18n="hero.coords.temp">TEMP</span> <span class="v">4°C · 39°F</span></div>
+      <div><span data-i18n="hero.coords.hour">HOUR</span> <span class="v" data-i18n="hero.coords.hourV">First light</span></div>
+    </div>
+
+    <div class="wrap hero-stack reveal in">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span class="caps-sm" data-i18n="hero.eyebrow">NEW SEASON · AUTUMN RUT INCOMING</span>
+      </div>
+
+      <div class="hero-emblem">
+        <svg class="moose-silhouette" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Moose Calling 101 emblem">
+          <defs>
+            <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#d89344" stop-opacity="0.32"/>
+              <stop offset="50%"  stop-color="#d89344" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#d89344" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="logoCircle">
+              <circle cx="250" cy="250" r="135"/>
+            </clipPath>
+          </defs>
+
+          <!-- Halo glow -->
+          <circle cx="250" cy="250" r="240" fill="url(#halo)"/>
+
+          <!-- Animated sound rings -->
+          <g fill="none" stroke="#d89344" stroke-linecap="round">
+            <circle cx="250" cy="250" r="145" stroke-width="0.8" opacity="0.4">
+              <animate attributeName="r"       values="138;220;138" dur="7s"  repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;0;0.5"   dur="7s"  repeatCount="indefinite"/>
+            </circle>
+            <circle cx="250" cy="250" r="170" stroke-width="0.6" opacity="0.3">
+              <animate attributeName="r"       values="158;240;158" dur="9s"  repeatCount="indefinite" begin="2s"/>
+              <animate attributeName="opacity" values="0.4;0;0.4"   dur="9s"  repeatCount="indefinite" begin="2s"/>
+            </circle>
+            <circle cx="250" cy="250" r="195" stroke-width="0.4" opacity="0.2">
+              <animate attributeName="r"       values="180;260;180" dur="11s" repeatCount="indefinite" begin="3.5s"/>
+              <animate attributeName="opacity" values="0.3;0;0.3"   dur="11s" repeatCount="indefinite" begin="3.5s"/>
+            </circle>
+          </g>
+
+          <!-- Logo image -->
+          <image href="img/logo.jpg" x="115" y="115" width="270" height="270" clip-path="url(#logoCircle)" preserveAspectRatio="xMidYMid slice"/>
+
+          <!-- Concentric frame rings -->
+          <circle cx="250" cy="250" r="135" fill="none" stroke="#d89344" stroke-width="1.5" opacity="0.55"/>
+          <circle cx="250" cy="250" r="140" fill="none" stroke="#d89344" stroke-width="0.6" opacity="0.28"/>
+          <circle cx="250" cy="250" r="148" fill="none" stroke="#d89344" stroke-width="0.3" opacity="0.18"/>
+
+          <!-- Compass tick marks -->
+          <g stroke="#d89344" stroke-width="1.2" stroke-linecap="round" opacity="0.6">
+            <line x1="250" y1="118" x2="250" y2="128"/>
+            <line x1="250" y1="372" x2="250" y2="382"/>
+            <line x1="118" y1="250" x2="128" y2="250"/>
+            <line x1="372" y1="250" x2="382" y2="250"/>
+          </g>
+        </svg>
+      </div>
+
+      <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
+        The <em>ancestral art</em> of calling &amp; tracking moose — taught online by an Indigenous
+        instructor who grew up listening to the bush. Custom tutorial videos, strategy breakdowns,
+        and live 1-on-1 coaching built for your exact question.
+      </p>
+
+      <div class="hero-meta">
+        <div>
+          <div class="label" data-i18n="hero.meta.students.l">Students taught</div>
+          <div class="val" data-i18n="hero.meta.students.v">2,340+</div>
         </div>
-
-        <h1 class="hero-title">
-          Moose<br/>
-          <span class="it">Calling</span><br/>
-          101<span class="num">™</span>
-        </h1>
-
-        <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
-          The <em>ancestral art</em> of calling &amp; tracking moose — taught online by an Indigenous
-          instructor who grew up listening to the bush. Custom tutorial videos, strategy breakdowns,
-          and live 1-on-1 coaching built for your exact question.
-        </p>
-
-        <div class="hero-meta">
-          <div>
-            <div class="label" data-i18n="hero.meta.students.l">Students taught</div>
-            <div class="val" data-i18n="hero.meta.students.v">2,340+</div>
-          </div>
-          <div>
-            <div class="label" data-i18n="hero.meta.lessons.l">Formats offered</div>
-            <div class="val" data-i18n="hero.meta.lessons.v">6 + 3 bundles</div>
-          </div>
-          <div>
-            <div class="label" data-i18n="hero.meta.countries.l">Countries reached</div>
-            <div class="val" data-i18n="hero.meta.countries.v">34</div>
-          </div>
+        <div>
+          <div class="label" data-i18n="hero.meta.lessons.l">Formats offered</div>
+          <div class="val" data-i18n="hero.meta.lessons.v">6 + 3 bundles</div>
         </div>
-
-        <div class="hero-cta-row">
-          <a href="#lessons" class="btn btn-primary">
-            <span data-i18n="hero.cta.primary">See the lessons</span>
-            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
-          </a>
-          <a href="#services" class="btn btn-ghost">
-            <span data-i18n="hero.cta.secondary">Book a private session</span>
-            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
-          </a>
+        <div>
+          <div class="label" data-i18n="hero.meta.countries.l">Countries reached</div>
+          <div class="val" data-i18n="hero.meta.countries.v">34</div>
         </div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-coords mono">
-          <div><span data-i18n="hero.coords.season">SEASON</span> <span class="v" data-i18n="hero.coords.seasonV">Autumn rut</span></div>
-          <div><span data-i18n="hero.coords.wind">WIND</span> <span class="v">NNE · 8 km/h</span></div>
-          <div style="margin-top:10px"><span data-i18n="hero.coords.moon">MOON</span> <span class="v" data-i18n="hero.coords.moonV">★ Waxing gibbous</span></div>
-          <div><span data-i18n="hero.coords.temp">TEMP</span> <span class="v">4°C · 39°F</span></div>
-          <div><span data-i18n="hero.coords.hour">HOUR</span> <span class="v" data-i18n="hero.coords.hourV">First light</span></div>
-        </div>
-
-        <svg class="moose-silhouette" viewBox="0 0 500 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Moose silhouette">
-          <defs>
-            <linearGradient id="antler" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#e8dfc8"/>
-              <stop offset="100%" stop-color="#b6ac92"/>
-            </linearGradient>
-            <filter id="roughen">
-              <feTurbulence baseFrequency="0.04" numOctaves="2" seed="3"/>
-              <feDisplacementMap in="SourceGraphic" scale="3"/>
-            </filter>
-          </defs>
-
-          <g fill="url(#antler)" filter="url(#roughen)">
-            <path d="M180 120 C 120 100, 80 140, 60 100 L 50 120 C 70 160, 110 160, 140 150 C 100 170, 70 200, 90 210 C 110 205, 140 180, 170 160 C 140 200, 120 230, 150 235 C 180 220, 200 190, 210 160 L 200 130 Z"/>
-            <path d="M320 120 C 380 100, 420 140, 440 100 L 450 120 C 430 160, 390 160, 360 150 C 400 170, 430 200, 410 210 C 390 205, 360 180, 330 160 C 360 200, 380 230, 350 235 C 320 220, 300 190, 290 160 L 300 130 Z"/>
-          </g>
-
-          <g fill="#1a1e18" stroke="#2a2f26" stroke-width="1">
-            <path d="M200 140 C 180 180, 180 220, 200 240 L 230 260 L 230 340 C 220 360, 215 400, 230 440 L 260 460 L 250 500 C 245 520, 260 540, 270 540 L 280 540 C 290 540, 300 530, 295 510 L 290 480 C 300 470, 310 460, 305 430 L 310 340 L 310 260 L 330 240 C 330 240, 340 220, 340 200 C 340 170, 320 145, 300 140 Z" />
-            <path d="M255 460 C 250 475, 245 495, 258 510 L 275 505 C 275 495, 270 485, 268 470 Z" fill="#0f120e"/>
-            <ellipse cx="218" cy="190" rx="3" ry="4" fill="#d89344"/>
-          </g>
-
-          <g opacity="0.35" fill="none" stroke="#e8dfc8" stroke-width="1.2" stroke-linecap="round">
-            <path d="M250 525 C 260 550, 280 555, 290 545">
-              <animate attributeName="opacity" values="0.1;0.5;0.1" dur="3s" repeatCount="indefinite"/>
-            </path>
-            <path d="M260 540 C 280 570, 310 575, 320 560">
-              <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4s" repeatCount="indefinite" begin="0.5s"/>
-            </path>
-            <path d="M270 555 C 300 580, 330 585, 350 575">
-              <animate attributeName="opacity" values="0.1;0.3;0.1" dur="5s" repeatCount="indefinite" begin="1s"/>
-            </path>
-          </g>
-        </svg>
+      <div class="hero-cta-row">
+        <a href="#services" class="btn btn-primary">
+          <span data-i18n="hero.cta.primary">See the services</span>
+          <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">
+          <span data-i18n="hero.cta.secondary">Book a private session</span>
+          <svg class="btn-arrow" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5"/></svg>
+        </a>
       </div>
     </div>
 
@@ -2016,6 +2261,44 @@
     </div>
   </footer>
 
+  <!-- ===================== CHATBOT ===================== -->
+  <button class="chat-fab" id="chatFab" aria-label="Open chat" aria-expanded="false">
+    <span class="chat-fab-dot"></span>
+    <svg id="chatIconOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg id="chatIconClose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none" aria-hidden="true">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with William">
+    <div class="chat-header">
+      <div class="chat-avatar">
+        <img src="img/logo.jpg" alt="Moose Calling 101" width="42" height="42" />
+      </div>
+      <div class="chat-header-info">
+        <div class="chat-header-name" data-i18n="chat.header.name" data-i18n-html>Moose <span class="it">Calling</span> 101</div>
+        <div class="chat-header-status" data-i18n="chat.header.status">Online · usually replies within 48h</div>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages"></div>
+
+    <div class="chat-quick-replies" id="chatQuickReplies"></div>
+
+    <div class="chat-input-area">
+      <input class="chat-input" id="chatInput" type="text" data-i18n-placeholder data-i18n="chat.input.p" placeholder="Write your message…" autocomplete="off" />
+      <button class="chat-send" id="chatSend" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chat-foot" data-i18n="chat.foot" data-i18n-html>Replies forwarded to <strong>William</strong> · EMT booking</div>
+  </div>
+
   <script>
     // ===== Dictionnaire bilingue =====
     const i18n = {
@@ -2036,7 +2319,7 @@
         "hero.meta.lessons.v": "6 + 3 bundles",
         "hero.meta.countries.l": "Countries reached",
         "hero.meta.countries.v": "34",
-        "hero.cta.primary": "See the lessons",
+        "hero.cta.primary": "See the services",
         "hero.cta.secondary": "Book a private session",
         "hero.coords.season": "SEASON",
         "hero.coords.seasonV": "Autumn rut",
@@ -2212,7 +2495,30 @@
         "foot.shop.book": "Book a service",
         "foot.follow.news": "Newsletter",
         "foot.copyright": "© MMXXVI · Moose Calling 101 · All rights reserved",
-        "foot.tagline": "⚘ Taught with respect. Shared with care. ⚘"
+        "foot.tagline": "⚘ Taught with respect. Shared with care. ⚘",
+
+        "chat.header.name": "Moose <span class='it'>Calling</span> 101",
+        "chat.header.status": "Online · usually replies within 48h",
+        "chat.input.p": "Write your message…",
+        "chat.foot": "Replies forwarded to <strong>William</strong> · EMT booking",
+        "chat.welcome": "Hey! I'm the Moose Calling 101 assistant. Ask me about services, bundles, the calls, or how to book — William reads everything that comes through here.",
+        "chat.qr.services":  "Services & prices",
+        "chat.qr.bundles":   "Bundles",
+        "chat.qr.book":      "How to book",
+        "chat.qr.video":     "Custom videos",
+        "chat.qr.live":      "Live coaching",
+        "chat.qr.calls":     "The calls",
+        "chat.r.greetings1": "Hey! I'm the virtual assistant for Moose Calling 101. How can I help?",
+        "chat.r.greetings2": "Welcome to the bush. What can I do for you?",
+        "chat.r.services":   "There are <strong>6 individual services</strong> + <strong>3 bundles</strong>, all custom-made. Custom videos run from <strong>$40</strong> (basic tutorial) to <strong>$80</strong> (Big Bull strategy). Live 1-on-1 coaching is <strong>$80 / 30 min</strong>. Want details on a specific one?",
+        "chat.r.bundles":    "Three bundles tailored to different hunters: <strong>Season Ready ($120)</strong> for a complete plan · <strong>Rut Ready ($160-$200)</strong> the most complete · <strong>1-on-1 Power ($120)</strong> two live sessions. Which fits your style?",
+        "chat.r.book":       "Three steps: (1) email <strong>William.myrecovery@hotmail.com</strong> with the format you want and when you need it by, (2) once we confirm, send a <strong>deposit by Interac e-Transfer</strong> to the same address, (3) production starts and you receive your video / session.",
+        "chat.r.video":      "Four custom video formats: <strong>Basic tutorial $40</strong> (one call), <strong>Premium package $80 single / $120 combo</strong> (3 videos per call), <strong>Strategy video $60</strong> (your area, your situation), <strong>Big Bull strategy $80</strong> (mature bull tactics). All filmed for your specific question.",
+        "chat.r.live":       "Two live formats over Zoom, <strong>30 min each, $80</strong>: <strong>Strategy coaching</strong> (maps, setup, terrain, Fall 2026 game plan) and <strong>Calling coaching</strong> (your sounds, vocal cords, rhythm, tone). Or grab the <strong>1-on-1 Power bundle for $120</strong> to get both.",
+        "chat.r.calls":      "Three main calls: the <strong>cow call</strong> (long plaintive wail — king call of the rut), the <strong>bull grunt</strong> (short, territorial), and the <strong>calf cry</strong> (sacred, brings the cow back). Each has its season. Which one are you working on?",
+        "chat.r.when":       "Tell me when you need it by — opening day, a specific weekend, a hunt date — and we plan production around your season. Lead time is usually a week or two for videos. Live sessions can usually be scheduled within days.",
+        "chat.r.contact":    "Best ways to reach William: email and EMT to <strong>William.myrecovery@hotmail.com</strong>, or fill out the form at the bottom of this page. Replies usually come within 48 hours.",
+        "chat.r.fallback":   "Got it — I'll pass your message along. William reads everything personally, usually replies within 48 hours. In the meantime, you can email him directly: <strong>William.myrecovery@hotmail.com</strong>"
       },
       fr: {
         "nav.subtxt": "COURS EN LIGNE · EST. MMXVI",
@@ -2231,7 +2537,7 @@
         "hero.meta.lessons.v": "6 + 3 forfaits",
         "hero.meta.countries.l": "Pays rejoints",
         "hero.meta.countries.v": "34",
-        "hero.cta.primary": "Voir les leçons",
+        "hero.cta.primary": "Voir les services",
         "hero.cta.secondary": "Réserver une séance privée",
         "hero.coords.season": "SAISON",
         "hero.coords.seasonV": "Rut d'automne",
@@ -2407,7 +2713,30 @@
         "foot.shop.book": "Réserver un service",
         "foot.follow.news": "Infolettre",
         "foot.copyright": "© MMXXVI · Moose Calling 101 · Tous droits réservés",
-        "foot.tagline": "⚘ Enseigné avec respect. Transmis avec soin. ⚘"
+        "foot.tagline": "⚘ Enseigné avec respect. Transmis avec soin. ⚘",
+
+        "chat.header.name": "Moose <span class='it'>Calling</span> 101",
+        "chat.header.status": "En ligne · réponse habituelle sous 48 h",
+        "chat.input.p": "Écris ton message…",
+        "chat.foot": "Messages transmis à <strong>William</strong> · réservation par EMT",
+        "chat.welcome": "Salut ! Je suis l'assistant virtuel de Moose Calling 101. Pose-moi une question sur les services, les forfaits, les appels ou la réservation — William lit tout ce qui passe ici.",
+        "chat.qr.services":  "Services & prix",
+        "chat.qr.bundles":   "Forfaits",
+        "chat.qr.book":      "Comment réserver",
+        "chat.qr.video":     "Vidéos sur mesure",
+        "chat.qr.live":      "Coaching en direct",
+        "chat.qr.calls":     "Les appels",
+        "chat.r.greetings1": "Salut ! Je suis l'assistant virtuel de Moose Calling 101. Comment puis-je t'aider ?",
+        "chat.r.greetings2": "Bienvenue dans le bois. Qu'est-ce que je peux faire pour toi ?",
+        "chat.r.services":   "Il y a <strong>6 services individuels</strong> + <strong>3 forfaits</strong>, tous sur mesure. Les vidéos vont de <strong>40 $</strong> (tutoriel de base) à <strong>80 $</strong> (stratégie Big Bull). Le coaching 1-à-1 en direct est à <strong>80 $ / 30 min</strong>. Veux-tu des détails sur un en particulier ?",
+        "chat.r.bundles":    "Trois forfaits adaptés à différents chasseurs : <strong>Saison Ready (120 $)</strong> pour un plan complet · <strong>Rut Ready (160-200 $)</strong> le plus complet · <strong>1-à-1 Power (120 $)</strong> deux séances en direct. Lequel te convient ?",
+        "chat.r.book":       "Trois étapes : (1) écris à <strong>William.myrecovery@hotmail.com</strong> avec le format souhaité et la date dont tu as besoin, (2) une fois confirmé, envoie un <strong>dépôt par virement Interac</strong> à la même adresse, (3) la production démarre et tu reçois ta vidéo / séance.",
+        "chat.r.video":      "Quatre formats de vidéos sur mesure : <strong>Tutoriel de base 40 $</strong> (un appel), <strong>Forfait premium 80 $ unique / 120 $ combo</strong> (3 vidéos par appel), <strong>Vidéo stratégie 60 $</strong> (ton secteur, ta situation), <strong>Stratégie Big Bull 80 $</strong> (tactiques pour mâle mature). Tout filmé pour ta question précise.",
+        "chat.r.live":       "Deux formats en direct sur Zoom, <strong>30 min chacun, 80 $</strong> : <strong>coaching stratégie</strong> (cartes, setup, terrain, plan de match automne 2026) et <strong>coaching d'appel</strong> (tes sons, cordes vocales, rythme, tonalité). Ou prends le <strong>forfait 1-à-1 Power à 120 $</strong> pour les deux.",
+        "chat.r.calls":      "Trois appels principaux : l'<strong>appel de la femelle</strong> (gémissement long et plaintif — l'appel roi du rut), le <strong>grunt du mâle</strong> (court, territorial), et le <strong>cri du veau</strong> (sacré, ramène la femelle). Chacun a sa saison. Lequel veux-tu travailler ?",
+        "chat.r.when":       "Dis-moi pour quand tu en as besoin — l'ouverture, une fin de semaine précise, une date de chasse — et on planifie la production autour de ta saison. Le délai habituel est d'une à deux semaines pour une vidéo. Les séances en direct se planifient habituellement en quelques jours.",
+        "chat.r.contact":    "Pour rejoindre William : courriel et EMT à <strong>William.myrecovery@hotmail.com</strong>, ou remplis le formulaire en bas de cette page. Les réponses arrivent habituellement sous 48 heures.",
+        "chat.r.fallback":   "Compris — je transmets ton message. William lit tout personnellement et répond habituellement sous 48 heures. En attendant, tu peux le rejoindre directement : <strong>William.myrecovery@hotmail.com</strong>"
       }
     };
 
@@ -2442,6 +2771,8 @@
         const key = el.getAttribute('data-i18n-label');
         if (key in dict) el.setAttribute('label', dict[key]);
       });
+
+      if (typeof refreshChatLang === 'function') refreshChatLang();
 
       document.querySelectorAll('.lang-toggle .opt').forEach(opt => {
         opt.classList.toggle('active', opt.dataset.setLang === lang);
@@ -2529,6 +2860,158 @@
         moose.style.transform = `translate(${x}px, ${y}px)`;
       });
     }
+
+    // ===== Chatbot =====
+    const chatFab        = document.getElementById('chatFab');
+    const chatPanel      = document.getElementById('chatPanel');
+    const chatMessages   = document.getElementById('chatMessages');
+    const chatInput      = document.getElementById('chatInput');
+    const chatSend       = document.getElementById('chatSend');
+    const chatQuickReplies = document.getElementById('chatQuickReplies');
+    const chatIconOpen   = document.getElementById('chatIconOpen');
+    const chatIconClose  = document.getElementById('chatIconClose');
+
+    let chatStarted = false;
+
+    const quickReplyDefs = [
+      { intent: 'services', key: 'chat.qr.services' },
+      { intent: 'bundles',  key: 'chat.qr.bundles'  },
+      { intent: 'book',     key: 'chat.qr.book'     },
+      { intent: 'video',    key: 'chat.qr.video'    },
+      { intent: 'live',     key: 'chat.qr.live'     },
+      { intent: 'calls',    key: 'chat.qr.calls'    },
+    ];
+
+    function chatT(key) {
+      const dict = i18n[window.__lang] || i18n.en;
+      return dict[key] || key;
+    }
+
+    function addChatMessage(text, type, asHtml) {
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg ' + type;
+      if (asHtml) msg.innerHTML = text; else msg.textContent = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showChatTyping() {
+      let typing = chatMessages.querySelector('.chat-typing');
+      if (!typing) {
+        typing = document.createElement('div');
+        typing.className = 'chat-typing';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typing);
+      }
+      typing.classList.add('visible');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideChatTyping() {
+      const typing = chatMessages.querySelector('.chat-typing');
+      if (typing) typing.remove();
+    }
+
+    function renderQuickReplies() {
+      chatQuickReplies.innerHTML = '';
+      quickReplyDefs.forEach(qr => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-quick-btn';
+        btn.dataset.intent = qr.intent;
+        btn.dataset.labelKey = qr.key;
+        btn.textContent = chatT(qr.key);
+        btn.addEventListener('click', () => {
+          addChatMessage(chatT(qr.key), 'user');
+          chatQuickReplies.innerHTML = '';
+          botReply(qr.intent);
+        });
+        chatQuickReplies.appendChild(btn);
+      });
+    }
+
+    function refreshChatLang() {
+      // Safe-lookup: this can fire from applyLang during init,
+      // before the chat consts above have been initialized (TDZ on const).
+      const cqr = document.getElementById('chatQuickReplies');
+      if (!cqr) return;
+      cqr.querySelectorAll('.chat-quick-btn').forEach(btn => {
+        if (btn.dataset.labelKey) btn.textContent = chatT(btn.dataset.labelKey);
+      });
+    }
+
+    function detectChatIntent(text) {
+      const t = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (/\b(bonjour|allo|salut|hey|hi|hello|bonsoir|good\s?(morning|evening))\b/.test(t)) return 'greetings';
+      if (/\b(book|reserver|booking|deposit|depot|emt|interac|pay|payer|comment\s+(reserver|commander))\b/.test(t)) return 'book';
+      if (/\b(bundle|bundles|forfait|forfaits|combo|package|deal)\b/.test(t)) return 'bundles';
+      if (/\b(video|videos|tutoriel|tutorial|premium|big\s+bull|strategie|strategy)\b/.test(t)) return 'video';
+      if (/\b(live|direct|zoom|coaching|coach|en\s+direct|seance|session)\b/.test(t)) return 'live';
+      if (/\b(call|calls|appel|appels|cow|bull|calf|femelle|male|veau|grunt|wail|bleat|cri|gemissement)\b/.test(t)) return 'calls';
+      if (/\b(when|quand|delay|delai|delivery|livraison|how\s+long|how\s+soon|temps|combien\s+de\s+temps|deadline|opening|ouverture|rut)\b/.test(t)) return 'when';
+      if (/\b(contact|email|courriel|phone|tel|telephone|adresse|address|join|joindre)\b/.test(t)) return 'contact';
+      if (/\b(price|prices|prix|cost|combien|how\s+much|tarif|service|services|offer|offre)\b/.test(t)) return 'services';
+      return 'fallback';
+    }
+
+    function botReply(intent) {
+      showChatTyping();
+      const delay = 600 + Math.random() * 700;
+      setTimeout(() => {
+        hideChatTyping();
+        let key;
+        if (intent === 'greetings') {
+          key = Math.random() < 0.5 ? 'chat.r.greetings1' : 'chat.r.greetings2';
+        } else {
+          key = 'chat.r.' + intent;
+        }
+        addChatMessage(chatT(key), 'bot', true);
+        if (intent !== 'fallback') {
+          setTimeout(renderQuickReplies, 400);
+        }
+      }, delay);
+    }
+
+    function sendChatMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      addChatMessage(text, 'user');
+      chatInput.value = '';
+      chatQuickReplies.innerHTML = '';
+      const intent = detectChatIntent(text);
+      botReply(intent);
+    }
+
+    chatFab.addEventListener('click', () => {
+      const isOpen = chatPanel.classList.toggle('open');
+      chatFab.classList.toggle('open');
+      chatFab.setAttribute('aria-expanded', isOpen);
+      chatIconOpen.style.display  = isOpen ? 'none' : '';
+      chatIconClose.style.display = isOpen ? '' : 'none';
+
+      if (isOpen && !chatStarted) {
+        chatStarted = true;
+        setTimeout(() => {
+          addChatMessage(chatT('chat.welcome'), 'bot', true);
+          setTimeout(renderQuickReplies, 500);
+        }, 350);
+      }
+      if (isOpen) setTimeout(() => chatInput.focus(), 120);
+    });
+
+    chatSend.addEventListener('click', sendChatMessage);
+    chatInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); sendChatMessage(); }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && chatPanel.classList.contains('open')) {
+        chatPanel.classList.remove('open');
+        chatFab.classList.remove('open');
+        chatFab.setAttribute('aria-expanded', 'false');
+        chatIconOpen.style.display = '';
+        chatIconClose.style.display = 'none';
+      }
+    });
   </script>
 
 </body>
